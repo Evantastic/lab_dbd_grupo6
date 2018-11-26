@@ -7,7 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class Ciudad extends Model
 {
     protected $table = "ciudades";
+    /**
+     * Retorna los hoteles que pertenecen a la ciudad
+     */    
     public function hoteles(){
         return $this->hasMany(Hotel::class);
+    }
+    /**
+     * Retorna los aeropuertos que pertenecen a la ciudad
+     */
+    public function aeropuertos(){
+        return $this->hasMany(Aeropuerto::class);
+    }
+    /**
+     * Retorna las automotoras que pertenecen a la ciudad
+     */
+    public function automotora(){
+        return $this->hasMany(Automora::class);
     }
 }
