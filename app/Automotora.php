@@ -9,5 +9,8 @@ class Automotora extends Model
     protected $table = "automotoras";
     public function ciudad(){
         return $this->belongsTo(Ciudad::class);
-    }    
+    }
+    public function vehiculos(){
+        return $this->hasMany(Vehiculo::class);
+    }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Aeropuerto extends Model
 {
     protected $table = "aeropuertos";
-    public function aeropuertos(){
+    public function ciudad(){
         return $this->belongsTo(Ciudad::class);
     }
 }
