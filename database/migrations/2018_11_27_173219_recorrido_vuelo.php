@@ -16,6 +16,9 @@ class RecorridoVuelo extends Migration
         Schema::create('recorrido_vuelo', function (Blueprint $table) {
             $table->unsignedBigInteger('recorrido_id');
             $table->unsignedBigInteger('vuelo_id');
+            $table->foreign('recorrido_id')->references('id')->on('recorridos');
+            $table->foreign('vuelo_id')->references('id')->on('vuelos');
+            
         });
     }
 
