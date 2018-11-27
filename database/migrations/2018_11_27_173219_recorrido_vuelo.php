@@ -13,7 +13,10 @@ class RecorridoVuelo extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('recorrido_vuelo', function (Blueprint $table) {
+            $table->unsignedBigInteger('recorrido_id');
+            $table->unsignedBigInteger('vuelo_id');
+        });
     }
 
     /**
