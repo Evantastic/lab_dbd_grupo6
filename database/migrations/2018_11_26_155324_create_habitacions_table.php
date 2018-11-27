@@ -15,11 +15,11 @@ class CreateHabitacionsTable extends Migration
     {
         Schema::create('habitaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('hotel_id');
+            $table->unsignedBigInteger('hotel_id');
             $table->smallInteger('numero_habitacion');
             $table->smallInteger('capacidad');
             $table->text('descripcion');
-            //Revisar$table->integer('precio');
+            $table->unsignedSmallInteger('precio');
             $table->timestamps();
         });
     }
