@@ -20,7 +20,7 @@ class CreateHabitacionReservasTable extends Migration
             $table->foreign('reserva_id')->references('id')->on('reservas');
             $table->unsignedInteger('precio');
             $table->date('fecha_inicio');
-            $table->date)'fecha_termino');
+            $table->date('fecha_termino');
         });
     }
 

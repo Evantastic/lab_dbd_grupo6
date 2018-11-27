@@ -23,10 +23,8 @@ class CreateVuelosTable extends Migration
             $table->smallInteger('capacidad_business');
             $table->smallInteger('capacidad_discapacidad_business');
             $table->smallInteger('capacidad_discapacidad_economica');
-            $table->date('fecha_salida');
-            $table->date('fecha_llegada');
-            $table->time('hora_salida');
-            $table->time('hora_llegada');
+            $table->datetime('tiempo_salida');
+            $table->datetime('tiempo_llegada');
             $table->string('patente',15);
             $table->timestamps();
         });

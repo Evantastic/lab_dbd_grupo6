@@ -17,7 +17,7 @@ class Reserva extends Model
     }
 
     public function habitaciones(){
-        $this->belongsToMany(Habitacion::class);
+        $this->belongsToMany(Habitacion::class,'habitacion_reserva');
     }
 
     public function vehiculos(){

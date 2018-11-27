@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Ciudad extends Model
 {
     protected $table = "ciudades";
+
+    protected $fillable = [
+        'nombre',
+        'nombre_pais'
+    ];
+    
     /**
      * Retorna los hoteles que pertenecen a la ciudad
      */    
