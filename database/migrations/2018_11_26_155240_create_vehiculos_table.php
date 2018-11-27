@@ -16,6 +16,7 @@ class CreateVehiculosTable extends Migration
         Schema::create('vehiculos', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('automotora_id');
+            $table->foreign('automotora_id')->references('id')->on('automoras');
             $table->string('marca',31);
             $table->string('modelo',31);
             $table->string('tipo',31);

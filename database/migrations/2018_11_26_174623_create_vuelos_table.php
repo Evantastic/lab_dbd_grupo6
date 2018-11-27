@@ -17,6 +17,8 @@ class CreateVuelosTable extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('aeropuerto_origen_id');
             $table->unsignedBigInteger('aeropuerto_detino_id');
+            $table->foreign('aeropuerto_origen_id')->references('id')->on('aeropuertos');
+            $table->foreign('aeropuerto_destino_id')->references('id')->on('aeropuertos');            
             $table->smallInteger('capacidad_economica');
             $table->smallInteger('capacidad_business');
             $table->smallInteger('capacidad_discapacidad_business');
