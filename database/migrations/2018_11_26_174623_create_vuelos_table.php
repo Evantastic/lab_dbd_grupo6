@@ -15,8 +15,8 @@ class CreateVuelosTable extends Migration
     {
         Schema::create('vuelos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('aeropuerto_origen_id');
-            $table->unsignedBigInteger('aeropuerto_detino_id');
+            $table->integer('aeropuerto_origen_id');
+            $table->integer('aeropuerto_destino_id');
             $table->foreign('aeropuerto_origen_id')->references('id')->on('aeropuertos');
             $table->foreign('aeropuerto_destino_id')->references('id')->on('aeropuertos');            
             $table->smallInteger('capacidad_economica');
@@ -27,7 +27,7 @@ class CreateVuelosTable extends Migration
             $table->date('fecha_llegada');
             $table->time('hora_salida');
             $table->time('hora_llegada');
-            $table->string('patente');
+            $table->string('patente',15);
             $table->timestamps();
         });
     }

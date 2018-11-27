@@ -15,8 +15,8 @@ class CreateViajesTable extends Migration
     {
         Schema::create('viajes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('ciudad_origen_id');
-            $table->unsignedBigInteger('ciudad_destino_id');
+            $table->integer('ciudad_origen_id');
+            $table->integer('ciudad_destino_id');
             $table->foreign('ciudad_origen_id')->references('id')->on('ciudades');
             $table->foreign('ciudad_destino_id')->references('id')->on('ciudades');            
             $table->timestamps();

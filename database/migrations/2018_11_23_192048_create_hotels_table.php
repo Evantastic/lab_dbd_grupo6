@@ -15,7 +15,7 @@ class CreateHotelsTable extends Migration
     {
         Schema::create('hoteles', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('ciudad_id');
+            $table->integer('ciudad_id');
             $table->foreign('ciudad_id')->references('id')->on('ciudades');
             $table->string('nombre',63);
             $table->string('direccion',127);

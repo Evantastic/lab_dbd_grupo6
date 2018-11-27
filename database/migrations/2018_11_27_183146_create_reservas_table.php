@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecorridosTable extends Migration
+class CreateReservasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateRecorridosTable extends Migration
      */
     public function up()
     {
-        Schema::create('recorridos', function (Blueprint $table) {
+        Schema::create('reservas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('costo_economico');
-            $table->unsignedInteger('costo_bussiness');
+            $table->unsignedInteger('costo');
+            $table->boolean('seguro');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateRecorridosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recorridos');
+        Schema::dropIfExists('reservas');
     }
 }

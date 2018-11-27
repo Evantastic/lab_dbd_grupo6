@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RecorridoVuelo extends Migration
+class CreateRecorridoReservasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class RecorridoVuelo extends Migration
      */
     public function up()
     {
-        Schema::create('recorrido_vuelo', function (Blueprint $table) {
+        Schema::create('recorrido_reserva', function (Blueprint $table) {
             $table->integer('recorrido_id');
-            $table->integer('vuelo_id');
+            $table->integer('reserva_id');
             $table->foreign('recorrido_id')->references('id')->on('recorridos');
-            $table->foreign('vuelo_id')->references('id')->on('vuelos');            
+            $table->foreign('reserva_id')->references('id')->on('reservas');
+            $table->unsignedInteger('costo_economico');
+            $table->unsignedInteger('costo_bussiness');
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -27,6 +30,6 @@ class RecorridoVuelo extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recorrido_vuelo');        
+        Schema::dropIfExists('recorrido_reserva');
     }
 }
