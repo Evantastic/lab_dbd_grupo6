@@ -13,4 +13,7 @@ class Vuelo extends Model
     public function aeropuerto_destino(){
         return $this->belongsTo(Aeropuerto::class,'aeropuerto_destino_id');
     }
+    public function recorridos(){
+        return $this->belongsToMany(Recorrido::class);
+    }
 }
