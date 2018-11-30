@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Aeropuerto;
+use App\Hotel;
 
-class AeropuertosSeeder extends Seeder
+class HotelsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class AeropuertosSeeder extends Seeder
      */
     public function run()
     {
-        factory(Aeropuerto::class,30)->create();
+        factory(Hotel::class,50)->create();
     }
 }
