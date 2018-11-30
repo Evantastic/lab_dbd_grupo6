@@ -65,11 +65,11 @@
 ** TODO Modelo
 ** TODO Factory
 ** TODO Seeder
-* TODO Recorrido [1/4]
+* DONE Recorrido [4/4]
 ** DONE Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
 * TODO Pasaje [0/4]
 ** TODO Migración
 ** TODO Modelo
