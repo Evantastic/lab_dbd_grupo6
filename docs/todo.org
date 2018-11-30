@@ -1,0 +1,112 @@
+# -*- coding: utf-8 -*-
+#+title: TODO
+* DONE Aerouperto [4/4]
+** DONE Migración
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
+* DONE Viaje [4/4]
+** DONE Migración
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
+* DONE Ciudad [4/4]
+** DONE Migración
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
+* DONE Automotora [4/4]
+** DONE Migración
+** DONE Model
+** DONE Factory
+** DONE Seeder
+* DONE Hotel [4/4]
+** DONE Migración
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
+* DONE Habitación [4/4]
+** DONE Migración
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
+* DONE Vehículo [4/4]
+** DONE Migración
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
+* TODO Habitación_Reserva [1/4]
+** DONE Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Paquete_Reserva [1/4]
+** DONE Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Reserva_Vehículo [1/4]
+** DONE Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Recorrido_Vuelo [1/4]
+** DONE Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Paquete [1/4]
+** DONE Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Vuelo [1/4]
+** DONE Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Recorrido [1/4]
+** DONE Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Pasaje [0/4]
+** TODO Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Recorrido_Reserva [1/4]
+** DONE Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Compra [0/4]
+** TODO Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Reserva [1/4]
+** DONE Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Cliente [0/4]
+** TODO Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Usuario [0/4]
+** TODO Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO Administrador [0/4]
+** TODO Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder
+* TODO LogAdministrador [0/4]
+** TODO Migración
+** TODO Modelo
+** TODO Factory
+** TODO Seeder

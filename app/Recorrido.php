@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recorrido extends Model
 {
-    protected $table = "recorridos";
+    protected $table = 'recorridos';
+
+    protected $fillable = [
+        'costo_economico',
+        'costo_bussiness'
+    ];
     
     public function vuelos(){
         return $this->belongsToMany(Vuelo::class);
