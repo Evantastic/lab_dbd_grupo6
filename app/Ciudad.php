@@ -28,7 +28,7 @@ class Ciudad extends Model
     /**
      * Retorna las automotoras que pertenecen a la ciudad
      */
-    public function automotora(){
+    public function automotoras(){
         return $this->hasMany(Automora::class);
     }
 }
