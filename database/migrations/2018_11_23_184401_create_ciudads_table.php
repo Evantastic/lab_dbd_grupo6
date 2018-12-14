@@ -15,8 +15,8 @@ class CreateCiudadsTable extends Migration
     {
         Schema::create('ciudades', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre',127);
-            $table->string('nombre_pais',127);
+            $table->string('nombre',128);
+            $table->string('nombre_pais',128);
             $table->timestamps();
         });
     }
