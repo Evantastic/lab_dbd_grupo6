@@ -6,7 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Paquete extends Model
 {
-    protected $table = "paquetes";
+    protected $table = 'paquetes';
+
+    protected $dates = [
+        'fecha_expiracion'
+    ];
+
+    protected $fillable = [
+        'recorrido_id',
+        'habitacion_id',
+        'vehiculo_id',
+        'descuento',
+        'tipo',
+        'cantidad_personas',
+        'fecha_expiracion'
+    ];
     
     public function recorrido(){
         return $this->belongsTo(Recorrido::class);
