@@ -21,11 +21,11 @@ class CreateVuelosTable extends Migration
             $table->foreign('aeropuerto_destino_id')->references('id')->on('aeropuertos');            
             $table->smallInteger('capacidad_economica');
             $table->smallInteger('capacidad_business');
-            $table->smallInteger('capacidad_discapacidad_business');
+            $table->smallInteger('capacidad_discapacidad_bussiness');
             $table->smallInteger('capacidad_discapacidad_economica');
             $table->datetime('tiempo_salida');
             $table->datetime('tiempo_llegada');
-            $table->string('patente',15);
+            $table->string('patente',16);
             $table->timestamps();
         });
     }

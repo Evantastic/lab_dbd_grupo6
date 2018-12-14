@@ -4,25 +4,25 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Aeropuerto;
-use App\Recorrido;
+use App\Recorrido_Vuelo;
 
 class Vuelo extends Model
 {
-    protected $table = "vuelos";
+    protected $table = 'vuelos';
     
     protected $fillable = [
-        "aeropuertos_origen_id",
-        "aeropuertos_destino_id",
-        "capacidad_economica",
-        "capacidad_bussiness",
-        "capacidad_discapacidad_economica",
-        "capacidad_discapacidad_bussiness",
-        "patente"
+        'aeropuertos_origen_id',
+        'aeropuertos_destino_id',
+        'capacidad_economica',
+        'capacidad_bussiness',
+        'capacidad_discapacidad_economica',
+        'capacidad_discapacidad_bussiness',
+        'patente'
     ];
     
     protected $dates = [
-        "tiempo_salida",
-        "tiempo_llegada"
+        'tiempo_salida',
+        'tiempo_llegada'
     ];
     
     public function aeropuerto_origen(){
@@ -33,7 +33,7 @@ class Vuelo extends Model
         return $this->belongsTo(Aeropuerto::class,'aeropuerto_destino_id');
     }
     
-    public function recorridos(){
-        return $this->belongsToMany(Recorrido::class);
+    public function recorrido_vuelos(){
+        return $this->hasMany(Recorrido_Vuelo::class);
     }
 }
