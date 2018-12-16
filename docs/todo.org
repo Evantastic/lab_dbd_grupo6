@@ -35,16 +35,16 @@
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* TODO Paquete [1/4]
+* DONE Paquete [4/4]
 ** DONE Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
-* TODO Vuelo [1/4]
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
+* DONE Vuelo [4/4]
 ** DONE Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
 * DONE Recorrido [4/4]
 ** DONE Migración
 ** DONE Modelo
@@ -60,11 +60,11 @@
 ** TODO Modelo
 ** TODO Factory
 ** TODO Seeder
-* TODO Reserva [1/4]
+* DONE Reserva [4/4]
 ** DONE Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
 * TODO Usuario [0/4]
 ** TODO Migración
 ** TODO Modelo
@@ -75,28 +75,28 @@
 ** TODO Modelo
 ** TODO Factory
 ** TODO Seeder
-* TODO Recorrido_Reserva [1/4]
+* DONE Recorrido_Reserva [4/4]
 ** DONE Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
-* TODO Habitación_Reserva [1/4]
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
+* DONE Habitación_Reserva [4/4]
 ** DONE Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
-* TODO Paquete_Reserva [1/4]
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
+* DONE Paquete_Reserva [4/4]
 ** DONE Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
-* TODO Reserva_Vehículo [1/4]
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
+* DONE Reserva_Vehículo [4/4]
 ** DONE Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
-* TODO Recorrido_Vuelo [1/4]
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
+* DONE Recorrido_Vuelo [4/4]
 ** DONE Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
+** DONE Modelo
+** DONE Factory
+** DONE Seeder

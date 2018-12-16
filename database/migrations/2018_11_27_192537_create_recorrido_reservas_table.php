@@ -13,13 +13,15 @@ class CreateRecorridoReservasTable extends Migration
      */
     public function up()
     {
-        Schema::create('recorrido_reserva', function (Blueprint $table) {
+        Schema::create('recorrido_reservas', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('recorrido_id');
             $table->integer('reserva_id');
             $table->foreign('recorrido_id')->references('id')->on('recorridos');
             $table->foreign('reserva_id')->references('id')->on('reservas');
             $table->unsignedInteger('costo_economico');
             $table->unsignedInteger('costo_bussiness');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +32,6 @@ class CreateRecorridoReservasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recorrido_reserva');
+        Schema::dropIfExists('recorrido_reservas');
     }
 }

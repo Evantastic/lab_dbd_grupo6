@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Habitacion_Reserva;
 
 class Habitacion extends Model
 {
@@ -24,7 +25,7 @@ class Habitacion extends Model
         return $this->hasMany(Paquete::class);
     }
 
-    public function reservas(){
-        return $this->belongsToMany(Reserva::class);
+    public function habitacion_reservas(){
+        return $this->hasMany(Habitacion_Reserva::class);
     }
 }

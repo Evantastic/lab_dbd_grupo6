@@ -13,14 +13,16 @@ class CreateHabitacionReservasTable extends Migration
      */
     public function up()
     {
-        Schema::create('habitacion_reserva', function (Blueprint $table) {
+        Schema::create('habitacion_reservas', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('habitacion_id');
             $table->integer('reserva_id');
             $table->foreign('habitacion_id')->references('id')->on('habitaciones');
             $table->foreign('reserva_id')->references('id')->on('reservas');
             $table->unsignedInteger('precio');
-            $table->date('fecha_inicio');
-            $table->date('fecha_termino');
+            $table->datetime('fecha_inicio');
+            $table->datetime('fecha_termino');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +33,6 @@ class CreateHabitacionReservasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('habitacion_reserva');
+        Schema::dropIfExists('habitacion_reservas');
     }
 }

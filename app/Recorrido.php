@@ -23,7 +23,7 @@ class Recorrido extends Model
         return $this->hasMany(Paquete::class);
     }
 
-    public function reservas(){
-        return $this->belongsToMany(Reserva::class);
+    public function recorrido_reservas(){
+        return $this->hasMany(Recorrido_Reserva::class);
     }
 }

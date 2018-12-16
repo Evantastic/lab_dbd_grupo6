@@ -34,7 +34,7 @@ class Paquete extends Model
         return $this->belongsTo(Habitacion::class);
     }
 
-    public function reservas(){
-        return $this->belongsToMany(Reserva::class);
+    public function paquete_reservas(){
+        return $this->hasMany(Paquete_Reserva::class);
     }
 }

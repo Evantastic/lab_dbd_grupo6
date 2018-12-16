@@ -25,8 +25,8 @@ class Vehiculo extends Model
     public function paquetes(){
         return $this->hasMany(Paquete::class);
     }
-    
-    public function reservas(){
-        return $this->belongsToMany(Reserva::class);
+
+    public function reserva_vehiculos(){
+        return $this->hasMany(Paquete::class);
     }
 }
