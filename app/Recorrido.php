@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Recorrido_Vuelo;
+use App\Paquete;
 
 class Recorrido extends Model
 {
@@ -13,15 +15,15 @@ class Recorrido extends Model
         'costo_bussiness'
     ];
     
-    public function vuelos(){
-        return $this->belongsToMany(Vuelo::class);
+    public function recorrido_vuelos(){
+        return $this->hasMany(Recorrido_Vuelo::class);
     }
     
     public function paquetes(){
         return $this->hasMany(Paquete::class);
     }
 
-    public function reservas(){
-        return $this->belongsToMany(Reserva::class);
+    public function recorrido_reservas(){
+        return $this->hasMany(Recorrido_Reserva::class);
     }
 }

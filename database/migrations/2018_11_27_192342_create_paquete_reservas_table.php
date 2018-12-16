@@ -13,12 +13,14 @@ class CreatePaqueteReservasTable extends Migration
      */
     public function up()
     {
-        Schema::create('paquete_reserva', function (Blueprint $table) {
+        Schema::create('paquete_reservas', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('paquete_id');
             $table->integer('reserva_id');
             $table->foreign('paquete_id')->references('id')->on('paquetes');
             $table->foreign('reserva_id')->references('id')->on('reservas');
             $table->unsignedInteger('descuento');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +31,6 @@ class CreatePaqueteReservasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paquete_reserva');
+        Schema::dropIfExists('paquete_reservas');
     }
 }

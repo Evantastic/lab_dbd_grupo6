@@ -13,14 +13,16 @@ class CreateReservaVehiculosTable extends Migration
      */
     public function up()
     {
-        Schema::create('reserva_vehiculo', function (Blueprint $table) {
+        Schema::create('reserva_vehiculos', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('vehiculo_id');
             $table->integer('reserva_id');
             $table->foreign('vehiculo_id')->references('id')->on('vehiculos');
             $table->foreign('reserva_id')->references('id')->on('reservas');
             $table->unsignedInteger('precio');
-            $table->date('fecha_inicio');
-            $table->date('fecha_termino');
+            $table->datetime('fecha_inicio');
+            $table->datetime('fecha_termino');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +33,6 @@ class CreateReservaVehiculosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reserva_vehiculo');
+        Schema::dropIfExists('reserva_vehiculos');
     }
 }
