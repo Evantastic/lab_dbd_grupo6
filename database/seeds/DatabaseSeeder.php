@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PaqueteReservaSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(CompraSeeder::class);
+        $this->call(PasajeSeeder::class);
     }
 }

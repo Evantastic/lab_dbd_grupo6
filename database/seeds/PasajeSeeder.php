@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Pasaje;
 class PasajeSeeder extends Seeder
 {
     /**
@@ -11,6 +11,6 @@ class PasajeSeeder extends Seeder
      */
     public function run()
     {
-        //
+       factory(Pasaje::class,60)->create(); //
     }
 }

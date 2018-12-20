@@ -7,7 +7,7 @@ use App\Reserva_Vehiculo;
 use App\Recorrido_Reserva;
 use App\Habitacion_Reserva;
 use App\Paquete_Reserva;
-
+use App\Pasaje;
 class Reserva extends Model
 {
     protected $table = 'reservas';
@@ -31,5 +31,9 @@ class Reserva extends Model
 
     public function paquete_reservas(){
         return $this->hasMany(Paquete_Reserva::class);
+    }
+
+    public function pasaje(){
+        return $this->hasMany(Pasaje::class);
     }
 }
