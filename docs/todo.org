@@ -1,102 +1,122 @@
 # -*- coding: utf-8 -*-
 #+title: TODO
-* DONE Aerouperto [4/4]
+* DONE Aerouperto [5/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Viaje [4/4]
+** DONE Controller
+* DONE Viaje [4/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Ciudad [4/4]
+** TODO Controller
+* DONE Ciudad [5/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Automotora [4/4]
+** DONE Controller
+* DONE Automotora [5/5]
 ** DONE Migración
 ** DONE Model
 ** DONE Factory
 ** DONE Seeder
-* DONE Hotel [4/4]
+** DONE Controller
+* TODO Hotel [4/4]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Habitación [4/4]
+** TODO Controller
+* DONE Habitación [5/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Vehículo [4/4]
+** DONE Controller
+* TODO Vehículo [4/4]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Paquete [4/4]
+** TODO Controller
+* TODO Paquete [4/4]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Vuelo [4/4]
+** TODO Controller
+* TODO Vuelo [4/4]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Recorrido [4/4]
+** TODO Controller
+* TODO Recorrido [4/4]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
+** TODO Controller
 * TODO Pasaje [0/4]
 ** TODO Migración
 ** TODO Modelo
 ** TODO Factory
 ** TODO Seeder
+** TODO Controller
 * TODO Compra [0/4]
 ** TODO Migración
 ** TODO Modelo
 ** TODO Factory
 ** TODO Seeder
-* DONE Reserva [4/4]
+** TODO Controller
+* TODO Reserva [4/4]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
+** TODO Controller
 * TODO Usuario [0/4]
 ** TODO Migración
 ** TODO Modelo
 ** TODO Factory
 ** TODO Seeder
+** TODO Controller
 * TODO LogAdministrador [0/4]
 ** TODO Migración
 ** TODO Modelo
 ** TODO Factory
 ** TODO Seeder
-* DONE Recorrido_Reserva [4/4]
+** TODO Controller
+* TODO Recorrido_Reserva [4/4]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Habitación_Reserva [4/4]
+** TODO Controller
+* TODO Habitación_Reserva [4/4]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Paquete_Reserva [4/4]
+** TODO Controller
+* TODO Paquete_Reserva [4/4]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Reserva_Vehículo [4/4]
+** TODO Controller
+* TODO Reserva_Vehículo [4/4]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-* DONE Recorrido_Vuelo [4/4]
+** TODO Controller
+* TODO Recorrido_Vuelo [4/4]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
+** TODO Controller

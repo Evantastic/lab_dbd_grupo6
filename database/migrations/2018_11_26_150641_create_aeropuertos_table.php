@@ -19,6 +19,7 @@ class CreateAeropuertosTable extends Migration
             $table->foreign('ciudad_id')->references('id')->on('ciudades');
             $table->string('direccion',128);
             $table->string('nombre',64);
+            $table->boolean('es_valido')->default(true);
             $table->timestamps();
         });
     }

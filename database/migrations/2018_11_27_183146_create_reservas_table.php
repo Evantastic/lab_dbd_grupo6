@@ -17,6 +17,7 @@ class CreateReservasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('costo');
             $table->boolean('seguro');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }

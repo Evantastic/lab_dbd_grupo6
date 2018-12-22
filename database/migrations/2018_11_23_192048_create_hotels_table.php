@@ -21,6 +21,7 @@ class CreateHotelsTable extends Migration
             $table->string('direccion',128);
             $table->smallInteger('estrellas');
             $table->text('descripcion');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }

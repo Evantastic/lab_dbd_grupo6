@@ -17,12 +17,9 @@ class CreateRecorridoVuelosTable extends Migration
             $table->increments('id');
             $table->integer('recorrido_id');
             $table->integer('vuelo_id');
-            $table->foreign('recorrido_id')
-                ->references('id')
-                ->on('recorridos');
-            $table->foreign('vuelo_id')
-                ->references('id')
-                ->on('vuelos');
+            $table->foreign('recorrido_id')->references('id')->on('recorridos');
+            $table->foreign('vuelo_id')->references('id')->on('vuelos');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }

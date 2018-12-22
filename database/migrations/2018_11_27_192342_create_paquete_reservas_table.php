@@ -20,6 +20,7 @@ class CreatePaqueteReservasTable extends Migration
             $table->foreign('paquete_id')->references('id')->on('paquetes');
             $table->foreign('reserva_id')->references('id')->on('reservas');
             $table->unsignedInteger('descuento');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }

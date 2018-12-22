@@ -14,3 +14,22 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/aeropuerto','AeropuertoController');
+Route::resource('/viaje','ViajeController');
+Route::resource('/ciudad','CiudadController');
+Route::resource('/hotel','HotelController');
+Route::resource('/habitacion','HabitacionController');
+Route::resource('/automotora','AutomotoraController');
+Route::resource('/vehiculo','VehiculoController');
+Route::resource('/paquete','PaqueteController');
+Route::resource('/recorrido/','RecorridoController');
+Route::resource('/vuelo','VueloController');
+//Route::resource('/pasaje','PasajeController');
+//Route::resource('/compra','CompraController');
+Route::resource('/reserva','ReservaController');
+Route::resource('/usuario','UserController');
+//Route::resource('/Log','LogAdministradorController');

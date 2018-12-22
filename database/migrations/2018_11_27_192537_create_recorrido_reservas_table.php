@@ -21,6 +21,7 @@ class CreateRecorridoReservasTable extends Migration
             $table->foreign('reserva_id')->references('id')->on('reservas');
             $table->unsignedInteger('costo_economico');
             $table->unsignedInteger('costo_bussiness');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }
