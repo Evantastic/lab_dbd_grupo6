@@ -42,13 +42,13 @@
 ** DONE Factory
 ** DONE Seeder
 ** DONE Controller
-* TODO Paquete [4/5]
+* TODO Paquete (Fecha) [4/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
 ** TODO Controller
-* TODO Vuelo [4/5]
+* TODO Vuelo (Fecha) [4/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
@@ -66,7 +66,7 @@
 ** DONE Factory
 ** DONE Seeder
 ** TODO Controller
-* TODO Compra [4/5]
+* TODO Compra (Fecha) [4/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
@@ -84,7 +84,7 @@
 ** DONE Factory
 ** DONE Seeder
 ** TODO Controller
-* TODO queryLog [4/5]
+* TODO queryLog (Fecha) [4/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
@@ -96,7 +96,7 @@
 ** DONE Factory
 ** DONE Seeder
 ** DONE Controller
-* TODO Habitación_Reserva (Preguntar como validar fechas con Validator) [4/5]
+* TODO Habitación_Reserva (Fecha) [4/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
@@ -108,7 +108,7 @@
 ** DONE Factory
 ** DONE Seeder
 ** TODO Controller
-* TODO Reserva_Vehículo [4/5]
+* TODO Reserva_Vehículo (Fecha) [4/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
