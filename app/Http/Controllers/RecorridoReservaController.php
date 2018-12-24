@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\recorrido_reserva;
+use Validator;
+use App\Recorrido_Reserva;
 use Illuminate\Http\Request;
 
 class RecorridoReservaController extends Controller
 {
+    public function rules(){
+        return [
+            'recorrido_id'    => 'required|numeric|exists:recorridos,id',
+            'reserva_id'      => 'required|numeric|exists:reservas,id',
+            'costo_economico' => 'required|numeric',
+            'costo_bussiness' => 'required|numeric'
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,7 @@ class RecorridoReservaController extends Controller
      */
     public function index()
     {
-        //
+        return Recorrido_Reserva::all();
     }
 
     /**
@@ -35,7 +44,17 @@ class RecorridoReservaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        $recorrido_reserva = new \App\Recorrido_Reserva;
+        $recorrido_reserva->recorrido_id    = $request->get('recorrido_id');
+        $recorrido_reserva->reserva_id      = $request->get('reserva_id');
+        $recorrido_reserva->costo_economico = $request->get('costo_economico');
+        $recorrido_reserva->costo_bussiness = $request->get('costo_bussiness');
+        $recorrido_reserva->save();
+        return $recorrido_reserva;
     }
 
     /**
@@ -46,7 +65,7 @@ class RecorridoReservaController extends Controller
      */
     public function show(recorrido_reserva $recorrido_reserva)
     {
-        //
+        return $recorrido_reserva;
     }
 
     /**
@@ -69,7 +88,16 @@ class RecorridoReservaController extends Controller
      */
     public function update(Request $request, recorrido_reserva $recorrido_reserva)
     {
-        //
+        $validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        $recorrido_reserva->recorrido_id    = $request->get('recorrido_id');
+        $recorrido_reserva->reserva_id      = $request->get('reserva_id');
+        $recorrido_reserva->costo_economico = $request->get('costo_economico');
+        $recorrido_reserva->costo_bussiness = $request->get('costo_bussiness');
+        $recorrido_reserva->save();
+        return $recorrido_reserva;
     }
 
     /**
@@ -80,6 +108,11 @@ class RecorridoReservaController extends Controller
      */
     public function destroy(recorrido_reserva $recorrido_reserva)
     {
-        //
+        if($recorrido_reserva->es_valido){
+            $recorrido_reserva->es_valido = false;
+            $recorrido_reserva->save();
+            return json_encode(['outcome' => 'success']);
+        }
+        return json_encode(['outcome' => 'error']);
     }
 }

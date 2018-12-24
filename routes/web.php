@@ -33,3 +33,8 @@ Route::resource('/vuelo','VueloController');
 Route::resource('/reserva','ReservaController');
 Route::resource('/usuario','UserController');
 //Route::resource('/Log','LogAdministradorController');
+Route::resource('/recorrido_reserva','RecorridoReservaController');
+Route::resource('/habitacion_reserva','HabitacionReservaController');
+Route::resource('/paquete_reserva','PaqueteReservaController');
+Route::resource('/reserva_vehiculo','ReservaVehiculoController');
+Route::resource('/recorrido_vuelo','RecorridoVueloController');

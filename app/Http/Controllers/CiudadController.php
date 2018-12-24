@@ -10,8 +10,8 @@ class CiudadController extends Controller
 {
     public function rules(){
         return [
-            'nombre' => 'required|string',
-            'nombre_pais' => 'required|string'
+            'nombre' => 'required|string|max:128',
+            'nombre_pais' => 'required|string|max:128'
         ];
     }
     /**
