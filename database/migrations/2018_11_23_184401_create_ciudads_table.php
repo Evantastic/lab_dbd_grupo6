@@ -17,6 +17,7 @@ class CreateCiudadsTable extends Migration
             $table->increments('id');
             $table->string('nombre',128);
             $table->string('nombre_pais',128);
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }

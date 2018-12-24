@@ -26,6 +26,7 @@ class CreateVuelosTable extends Migration
             $table->datetime('tiempo_salida');
             $table->datetime('tiempo_llegada');
             $table->string('patente',16);
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }

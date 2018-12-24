@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Aeropuerto;
 use App\Recorrido_Vuelo;
 use App\Pasaje;
+
 class Vuelo extends Model
 {
     protected $table = 'vuelos';
@@ -36,7 +37,8 @@ class Vuelo extends Model
     public function recorrido_vuelos(){
         return $this->hasMany(Recorrido_Vuelo::class);
     }
-        public function pasajes(){
+    
+    public function pasajes(){
         return $this->hasMany(Pasaje::class);
     }
 }

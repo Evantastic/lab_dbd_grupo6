@@ -12,14 +12,13 @@ class queryLog extends Model
     protected $fillable = [
         'query',
         'user_id'
-
     ];
 
     protected $dates = [
     	'fecha_consulta'
     ];
 
-      public function user(){
-        return $this->hasMany(User::class);
-    }  //
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

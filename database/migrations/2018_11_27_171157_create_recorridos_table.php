@@ -17,6 +17,7 @@ class CreateRecorridosTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('costo_economico');
             $table->unsignedInteger('costo_bussiness');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }

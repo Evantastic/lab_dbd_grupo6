@@ -25,6 +25,7 @@ class CreatePaquetesTable extends Migration
             $table->smallInteger('tipo');
             $table->smallInteger('cantidad_personas');
             $table->date('fecha_expiracion');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }

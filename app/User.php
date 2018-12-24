@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Compra;
 use App\queryLog;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -34,10 +35,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function compra(){
+    
+    public function compras(){
         return $this->hasMany(Compra::class);
     }
-        public function queryLog(){
-        return $this->belongsTo(queryLog::class);
+    
+    public function queryLogs(){
+        return $this->hasMany(queryLog::class);
     }
 }

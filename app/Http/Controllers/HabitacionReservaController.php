@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\habitacion_reserva;
+use Validator;
+use App\Habitacion_Reserva;
 use Illuminate\Http\Request;
 
 class HabitacionReservaController extends Controller
 {
+    public function rules(){
+        return [
+            'habitacion_id' => 'required|numeric|exists:habitaciones,id',
+            'reserva_id' => 'required|numeric|exists:reservas,id',
+            'precio' => 'required|numeric',
+            'fecha_inicio' => 'required|date_format:Y/m/d H:i',
+            'fecha_termino' => 'required|date_format:Y/m/d H:i|different:fecha_inicio'
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,7 @@ class HabitacionReservaController extends Controller
      */
     public function index()
     {
-        //
+        return Habitacion_Reserva::all();
     }
 
     /**
@@ -35,7 +45,18 @@ class HabitacionReservaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*$validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        $habitacion_reserva = new \App\Habitacion_Reserva;
+        $habitacion_reserva->habitacion_id = $request->get('habitacion_id');
+        $habitacion_reserva->reserva_id = $request->get('reserva_id');
+        $habitacion_reserva->precio = $request->get('precio');
+        $habitacion_reserva->fecha_inicio = $request->get('fecha_inicio');
+        $habitacion_reserva->fecha_termino = $request->get('fecha_termino');
+        $habitacion_reserva->save();
+        return $habitacion_reserva;*/
     }
 
     /**
@@ -46,7 +67,7 @@ class HabitacionReservaController extends Controller
      */
     public function show(habitacion_reserva $habitacion_reserva)
     {
-        //
+        return $habitacion_reserva;
     }
 
     /**
