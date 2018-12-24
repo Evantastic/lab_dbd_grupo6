@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RecorridoReservaSeeder::class);
         $this->call(HabitacionReservaSeeder::class);
         $this->call(PaqueteReservaSeeder::class);
-        // $this->call(UsersTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(CompraSeeder::class);
+        $this->call(PasajeSeeder::class);
     }
 }
