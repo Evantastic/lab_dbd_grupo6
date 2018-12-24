@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name',128);
             $table->string('apellido',128);
             $table->string('nacionalidad',32);
-            $table->integer('edad');
-            $table->integer('tipoUsuario');
+            $table->smallInteger('edad');
+            $table->smallInteger('tipoUsuario');
             $table->string('email',128)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password',64);

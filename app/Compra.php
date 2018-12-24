@@ -18,6 +18,7 @@ class Compra extends Model
     protected $dates = [
     	'fecha_compra'
     ];
+    
     public function reserva(){
         return $this->belongsTo(Reserva::class);
     }

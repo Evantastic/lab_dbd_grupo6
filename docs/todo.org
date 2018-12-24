@@ -60,17 +60,17 @@
 ** DONE Factory
 ** DONE Seeder
 ** TODO Controller
-* TODO Pasaje [0/5]
-** TODO Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
+* TODO Pasaje [4/5]
+** DONE Migración
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
 ** TODO Controller
-* TODO Compra [0/5]
-** TODO Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
+* TODO Compra [4/5]
+** DONE Migración
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
 ** TODO Conrtoller
 * TODO Reserva [4/5]
 ** DONE Migración
@@ -78,17 +78,17 @@
 ** DONE Factory
 ** DONE Seeder
 ** TODO Controller
-* TODO Usuario [0/5]
-** TODO Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
+* TODO Usuario [4/5]
+** DONE Migración
+** DONE Model
+** DONE Factory
+** DONE Seeder
 ** TODO Controller
-* TODO LogAdministrador [0/5]
-** TODO Migración
-** TODO Modelo
-** TODO Factory
-** TODO Seeder
+* TODO queryLog [4/5]
+** DONE Migración
+** DONE Modelo
+** DONE Factory
+** DONE Seeder
 ** TODO Controller
 * DONE Recorrido_Reserva [5/5]
 ** DONE Migración

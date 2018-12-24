@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\queryLog;
+
 class queryLogSeeder extends Seeder
 {
     /**
@@ -11,6 +12,6 @@ class queryLogSeeder extends Seeder
      */
     public function run()
     {
-        factory(queryLog::class,60)->create();//
+        factory(queryLog::class,60)->create();
     }
 }

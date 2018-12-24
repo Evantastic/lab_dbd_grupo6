@@ -13,9 +13,9 @@ class CreateQueryLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('query_logs', function (Blueprint $table) {
+        Schema::create('queryLogs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('query',32);
+            $table->text('query');
             $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->datetime('fecha_consulta');
@@ -30,6 +30,6 @@ class CreateQueryLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('query_logs');
+        Schema::dropIfExists('queryLogs');
     }
 }
