@@ -446,6 +446,7 @@ class ComposerStaticInita641b68649db8c3a3b2d9b720d320cf6
         'App\\Http\\Controllers\\PaqueteController' => __DIR__ . '/../..' . '/app/Http/Controllers/PaqueteController.php',
         'App\\Http\\Controllers\\PaqueteReservaController' => __DIR__ . '/../..' . '/app/Http/Controllers/PaqueteReservaController.php',
         'App\\Http\\Controllers\\PasajeController' => __DIR__ . '/../..' . '/app/Http/Controllers/PasajeController.php',
+        'App\\Http\\Controllers\\QueryLogController' => __DIR__ . '/../..' . '/app/Http/Controllers/QueryLogController.php',
         'App\\Http\\Controllers\\RecorridoController' => __DIR__ . '/../..' . '/app/Http/Controllers/RecorridoController.php',
         'App\\Http\\Controllers\\RecorridoReservaController' => __DIR__ . '/../..' . '/app/Http/Controllers/RecorridoReservaController.php',
         'App\\Http\\Controllers\\RecorridoVueloController' => __DIR__ . '/../..' . '/app/Http/Controllers/RecorridoVueloController.php',
@@ -481,6 +482,7 @@ class ComposerStaticInita641b68649db8c3a3b2d9b720d320cf6
         'App\\Vehiculo' => __DIR__ . '/../..' . '/app/Vehiculo.php',
         'App\\Viaje' => __DIR__ . '/../..' . '/app/Viaje.php',
         'App\\Vuelo' => __DIR__ . '/../..' . '/app/Vuelo.php',
+        'App\\queryLog' => __DIR__ . '/../..' . '/app/queryLog.php',
         'AutomotorasSeeder' => __DIR__ . '/../..' . '/database/seeds/AutomotorasSeeder.php',
         'AyudadosSeeder' => __DIR__ . '/../..' . '/database/seeds/AyudadosSeeder.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
@@ -4219,6 +4221,7 @@ class ComposerStaticInita641b68649db8c3a3b2d9b720d320cf6
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+        'queryLogSeeder' => __DIR__ . '/../..' . '/database/seeds/queryLogSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

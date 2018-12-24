@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Compra;
+use App\queryLog;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -35,5 +36,8 @@ class User extends Authenticatable
     ];
     public function compra(){
         return $this->hasMany(Compra::class);
+    }
+        public function queryLog(){
+        return $this->belongsTo(queryLog::class);
     }
 }

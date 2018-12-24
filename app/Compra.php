@@ -12,7 +12,7 @@ class Compra extends Model
 
     protected $fillable = [
         'reserva_id',
-        'cliente_id'
+        'user_id'
     ];
 
     protected $dates = [

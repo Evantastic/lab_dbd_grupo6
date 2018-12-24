@@ -7,6 +7,7 @@ use App\Vuelo;
 use App\Reserva;
 class Pasaje extends Model
 {
+    protected $table = 'pasajes';
      protected $fillable = [
         'fila',
         'columna',

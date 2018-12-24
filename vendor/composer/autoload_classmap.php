@@ -32,6 +32,7 @@ return array(
     'App\\Http\\Controllers\\PaqueteController' => $baseDir . '/app/Http/Controllers/PaqueteController.php',
     'App\\Http\\Controllers\\PaqueteReservaController' => $baseDir . '/app/Http/Controllers/PaqueteReservaController.php',
     'App\\Http\\Controllers\\PasajeController' => $baseDir . '/app/Http/Controllers/PasajeController.php',
+    'App\\Http\\Controllers\\QueryLogController' => $baseDir . '/app/Http/Controllers/QueryLogController.php',
     'App\\Http\\Controllers\\RecorridoController' => $baseDir . '/app/Http/Controllers/RecorridoController.php',
     'App\\Http\\Controllers\\RecorridoReservaController' => $baseDir . '/app/Http/Controllers/RecorridoReservaController.php',
     'App\\Http\\Controllers\\RecorridoVueloController' => $baseDir . '/app/Http/Controllers/RecorridoVueloController.php',
@@ -67,6 +68,7 @@ return array(
     'App\\Vehiculo' => $baseDir . '/app/Vehiculo.php',
     'App\\Viaje' => $baseDir . '/app/Viaje.php',
     'App\\Vuelo' => $baseDir . '/app/Vuelo.php',
+    'App\\queryLog' => $baseDir . '/app/queryLog.php',
     'AutomotorasSeeder' => $baseDir . '/database/seeds/AutomotorasSeeder.php',
     'AyudadosSeeder' => $baseDir . '/database/seeds/AyudadosSeeder.php',
     'BeyondCode\\DumpServer\\DumpServerCommand' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
@@ -3805,4 +3807,5 @@ return array(
     'phpDocumentor\\Reflection\\Types\\String_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/String_.php',
     'phpDocumentor\\Reflection\\Types\\This' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/This.php',
     'phpDocumentor\\Reflection\\Types\\Void_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+    'queryLogSeeder' => $baseDir . '/database/seeds/queryLogSeeder.php',
 );
