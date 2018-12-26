@@ -20,6 +20,7 @@ class CreateComprasTable extends Migration
             $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->datetime('fecha_compra');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
             
         });

@@ -15,15 +15,16 @@ class CreatePasajesTable extends Migration
     {
         Schema::create('pasajes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('reserva_id');
+            $table->foreign('reserva_id')->references('id')->on('reservas');
+            $table->integer('vuelo_id');
+            $table->foreign('vuelo_id')->references('id')->on('vuelos');
             $table->char('fila');
             $table->integer('columna');
             $table->boolean('pasaje_simple');
             $table->boolean('asiento_bussiness');
             $table->boolean('asiento_discapacidad');
-            $table->integer('reserva_id');
-            $table->integer('vuelo_id');
-            $table->foreign('reserva_id')->references('id')->on('reservas');
-            $table->foreign('vuelo_id')->references('id')->on('vuelos');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }
