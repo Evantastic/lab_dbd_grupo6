@@ -22,6 +22,7 @@ class CreateHabitacionReservasTable extends Migration
             $table->unsignedInteger('precio');
             $table->datetime('fecha_inicio');
             $table->datetime('fecha_termino');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }

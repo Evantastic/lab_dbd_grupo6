@@ -23,6 +23,7 @@ class CreateVehiculosTable extends Migration
             $table->string('patente',16);
             $table->unsignedInteger('precio');
             $table->smallInteger('capacidad');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }

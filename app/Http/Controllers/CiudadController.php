@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Ciudad;
 use Illuminate\Http\Request;
 
 class CiudadController extends Controller
 {
+    public function rules(){
+        return [
+            'nombre' => 'required|string|max:128',
+            'nombre_pais' => 'required|string|max:128'
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,7 @@ class CiudadController extends Controller
      */
     public function index()
     {
-        //
+        return Ciudad::all();
     }
 
     /**
@@ -35,7 +42,16 @@ class CiudadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),
+                                     $this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        $ciudad = new \App\Ciudad;
+        $ciudad->nombre = $request->get('nombre');
+        $ciudad->nombre_pais = $request->get('nombre_pais');
+        $ciudad->save();
+        return $ciudad;
     }
 
     /**
@@ -46,7 +62,7 @@ class CiudadController extends Controller
      */
     public function show(Ciudad $ciudad)
     {
-        //
+        return $ciudad;
     }
 
     /**
@@ -69,7 +85,15 @@ class CiudadController extends Controller
      */
     public function update(Request $request, Ciudad $ciudad)
     {
-        //
+        $validator = Validator::make($request->all(),
+                                     $this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        $ciudad->nombre = $request->get('nombre');
+        $ciudad->nombre_pais = $request->get('nombre_pais');
+        $ciudad->save();
+        return $ciudad;
     }
 
     /**
@@ -80,6 +104,11 @@ class CiudadController extends Controller
      */
     public function destroy(Ciudad $ciudad)
     {
-        //
+        if($ciudad->es_valido){
+            $ciudad->es_valido = false;
+            $ciudad->save();
+            return json_encode(['outcome' => 'success']);
+        }
+        return json_encode(['outcome' => 'error']);
     }
 }

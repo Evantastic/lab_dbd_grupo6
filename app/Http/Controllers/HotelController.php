@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Hotel;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
+    public function rules(){
+        return ['ciudad_id' => 'required|numeric|exists:ciudades,id',
+                'nombre' => 'required|string|max:64',
+                'direccion' => 'required|string|max:128',
+                'estrellas' => 'required|numeric|between:1,5',
+                'descripcion' => 'required|string'
+        ];
+                    
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,7 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        return Hotel::all();
     }
 
     /**
@@ -35,7 +46,19 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        
+        $hotel = new \App\Hotel;
+        $hotel->ciudad_id = $request->get('ciudad_id');
+        $hotel->nombre = $request->get('nombre');
+        $hotel->direccion = $request->get('direccion');
+        $hotel->estrellas = $request->get('estrellas');
+        $hotel->descripcion = $request->get('descripcion');
+        $hotel->save();
+        return $hotel;
     }
 
     /**
@@ -46,7 +69,7 @@ class HotelController extends Controller
      */
     public function show(Hotel $hotel)
     {
-        //
+        return $hotel;
     }
 
     /**
@@ -69,7 +92,17 @@ class HotelController extends Controller
      */
     public function update(Request $request, Hotel $hotel)
     {
-        //
+        $validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        $hotel->ciudad_id = $request->get('ciudad_id');
+        $hotel->nombre = $request->get('nombre');
+        $hotel->direccion = $request->get('direccion');
+        $hotel->estrellas = $request->get('estrellas');
+        $hotel->descripcion = $request->get('descripcion');
+        $hotel->save();
+        return $hotel;
     }
 
     /**
@@ -80,6 +113,11 @@ class HotelController extends Controller
      */
     public function destroy(Hotel $hotel)
     {
-        //
+        if($hotel->es_valido){
+            $hotel->es_valido = false;
+            $hotel->save();
+            return json_encode(['outcome' => 'success']);
+        }
+        return json_encode(['outcome' => 'error']);
     }
 }

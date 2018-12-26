@@ -11,7 +11,7 @@ class Habitacion extends Model
 
     protected $fillable = [
         'hotel_id',
-        'numbero_habitacion',
+        'numero_habitacion',
         'capacidad',
         'descripcion',
         'precio'

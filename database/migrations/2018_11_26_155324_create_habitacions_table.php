@@ -21,6 +21,7 @@ class CreateHabitacionsTable extends Migration
             $table->smallInteger('capacidad');
             $table->text('descripcion');
             $table->unsignedInteger('precio');
+            $table->boolean('es_valido')->default=true;
             $table->timestamps();
         });
     }

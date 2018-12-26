@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Aeropuerto;
 use Illuminate\Http\Request;
+use Validator;
 
 class AeropuertoController extends Controller
 {
+    public function rules(){
+        return  [
+            'ciudad_id' => 'required|numeric|exists:ciudades,id',
+            'nombre' => 'required|string|max:128',
+            'direccion' => 'required|string|max:64'
+        ];
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,7 @@ class AeropuertoController extends Controller
      */
     public function index()
     {
-        //
+        return Aeropuerto::all();
     }
 
     /**
@@ -35,7 +44,17 @@ class AeropuertoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return $validator->messages(); 
+        }
+        
+        $aeropuerto = new \App\Aeropuerto;
+        $aeropuerto->nombre = $request->get('nombre');
+        $aeropuerto->direccion = $request->get('direccion');
+        $aeropuerto->ciudad_id = $request->get('ciudad_id');
+        $aeropuerto->save();
+        return $aeropuerto;
     }
 
     /**
@@ -46,7 +65,7 @@ class AeropuertoController extends Controller
      */
     public function show(Aeropuerto $aeropuerto)
     {
-        //
+        return $aeropuerto;
     }
 
     /**
@@ -69,7 +88,16 @@ class AeropuertoController extends Controller
      */
     public function update(Request $request, Aeropuerto $aeropuerto)
     {
-        //
+        $validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return json_encode(['outcome' => 'error']); 
+        }
+        
+        $aeropuerto->nombre = $request->get('nombre');
+        $aeropuerto->direccion = $request->get('direccion');
+        $aeropuerto->ciudad_id = $request->get('ciudad_id');
+        $aeropuerto->save();
+        return $aeropuerto;
     }
 
     /**
@@ -80,6 +108,11 @@ class AeropuertoController extends Controller
      */
     public function destroy(Aeropuerto $aeropuerto)
     {
-        //
+        if($aeropuerto->es_valido){
+            $aeropuerto->es_valido = false;
+            $aeropuerto->save();
+            return json_encode(['outcome' => 'success']);
+        }
+        return json_encode(['outcome' => 'error']);
     }
 }
