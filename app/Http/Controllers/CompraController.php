@@ -7,15 +7,6 @@ use Illuminate\Http\Request;
 
 class CompraController extends Controller
 {
-
-
-    public function rules(){
-        return  [
-            
-        'reserva_id' => 'required|numeric|exists:reservas,id',
-        'user_id'=> 'required|numeric|exists:users,id'
-        ];
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +14,7 @@ class CompraController extends Controller
      */
     public function index()
     {
-      return Compra::all();  //
+        //
     }
 
     /**
