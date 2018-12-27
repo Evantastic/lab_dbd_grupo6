@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Reserva;
 use Illuminate\Http\Request;
-
+use Validator;
 class ReservaController extends Controller
 {
+    public function rules(){
+        return  [
+       
+        'costo'=>'required|numeric|max:1000',
+        'seguro'=>'required|boolean',
+        
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        //
+        return Reserva::all();//
     }
 
     /**
@@ -35,7 +43,17 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+              $validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return $validator->messages(); 
+        }
+        
+        $reserva = new \App\Reserva;
+        $reserva->costo = $request->get('costo');
+        $reserva->seguro = $request->get('seguro');
+
+        $reserva->save();
+        return $reserva;//  //
     }
 
     /**
@@ -46,7 +64,7 @@ class ReservaController extends Controller
      */
     public function show(Reserva $reserva)
     {
-        //
+       return $reserva; //
     }
 
     /**
@@ -69,7 +87,17 @@ class ReservaController extends Controller
      */
     public function update(Request $request, Reserva $reserva)
     {
-        //
+                   $validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return $validator->messages(); 
+        }
+        
+
+        $reserva->costo = $request->get('costo');
+        $reserva->seguro = $request->get('seguro');
+
+        $reserva->save();
+        return $reserva;   //
     }
 
     /**
@@ -80,6 +108,12 @@ class ReservaController extends Controller
      */
     public function destroy(Reserva $reserva)
     {
-        //
+                if($reserva->es_valido){
+            $reserva->es_valido = false;
+            $reserva->save();
+            return json_encode(['outcome' => 'success']);
+        }
+        return json_encode(['outcome' => 'error']);//
+    }//
     }
 }
