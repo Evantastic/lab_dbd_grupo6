@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\reserva_vehiculo;
+use App\Reserva_Vehiculo;
 use Illuminate\Http\Request;
+use Validator;
+use Carbon\Carbon;
 
 class ReservaVehiculoController extends Controller
 {
+    public function rules(){
+        return [
+            'vehiculo_id' => 'required|numeric|exists:vehiculos,id',
+            'reserva_id' => 'required|numeric|exists:reservas,id',
+            'precio' =>'required|numeric',
+            'fecha_inicio' => 'required|string',
+            'fecha_termino' => 'required|string'
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,7 @@ class ReservaVehiculoController extends Controller
      */
     public function index()
     {
-        //
+        return Reserva_Vehiculo::all();
     }
 
     /**
@@ -35,7 +46,25 @@ class ReservaVehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        $reserva_vehiculo = new \App\Reserva_Vehiculo;
+        $reserva_vehiculo->vehiculo_id = $request->get('vehiculo_id');
+        $reserva_vehiculo->reserva_id = $request->get('reserva_id');
+        $reserva_vehiculo->precio = $request->get('precio');
+        try{
+            $tiempo1 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_inicio'));
+            $tiempo2 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_termino'));
+        }
+        catch(\Exception $e){
+            return json_encode(['outcome' => 'error']);
+        };
+        $reserva_vehiculo->fecha_inicio = $tiempo1;
+        $reserva_vehiculo->fecha_termino = $tiempo2;
+        $reserva_vehiculo->save();
+        return $reserva_vehiculo;
     }
 
     /**
@@ -46,7 +75,7 @@ class ReservaVehiculoController extends Controller
      */
     public function show(reserva_vehiculo $reserva_vehiculo)
     {
-        //
+        return $reserva_vehiculo;
     }
 
     /**
@@ -69,7 +98,24 @@ class ReservaVehiculoController extends Controller
      */
     public function update(Request $request, reserva_vehiculo $reserva_vehiculo)
     {
-        //
+        $validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        $reserva_vehiculo->vehiculo_id = $request->get('vehiculo_id');
+        $reserva_vehiculo->reserva_id = $request->get('reserva_id');
+        $reserva_vehiculo->precio = $request->get('precio');
+        try{
+            $tiempo1 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_inicio'));
+            $tiempo2 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_termino'));
+        }
+        catch(\Exception $e){
+            return json_encode(['outcome' => 'error']);
+        }
+        $reserva_vehiculo->fecha_inicio = $tiempo1;
+        $reserva_vehiculo->fecha_termino = $tiempo2;
+        $reserva_vehiculo->save();
+        return $reserva_vehiculo;
     }
 
     /**
@@ -80,6 +126,11 @@ class ReservaVehiculoController extends Controller
      */
     public function destroy(reserva_vehiculo $reserva_vehiculo)
     {
-        //
+        if($reserva_vehiculo->es_valido){
+            $reserva_vehiculo->es_valido = false;
+            $reserva_vehiculo->save();
+            return json_encode(['outcome' => 'success']);
+        }
+        return json_encode(['outcom' => 'error']);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Validator;
 use App\Habitacion_Reserva;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class HabitacionReservaController extends Controller
 {
@@ -13,8 +14,8 @@ class HabitacionReservaController extends Controller
             'habitacion_id' => 'required|numeric|exists:habitaciones,id',
             'reserva_id' => 'required|numeric|exists:reservas,id',
             'precio' => 'required|numeric',
-            'fecha_inicio' => 'required|date_format:Y/m/d H:i',
-            'fecha_termino' => 'required|date_format:Y/m/d H:i|different:fecha_inicio'
+            'fecha_inicio' => 'required|string',
+            'fecha_termino' => 'required|string'
         ];
     }
     /**
@@ -45,7 +46,7 @@ class HabitacionReservaController extends Controller
      */
     public function store(Request $request)
     {
-        /*$validator = Validator::make($request->all(),$this->rules());
+        $validator = Validator::make($request->all(),$this->rules());
         if($validator->fails()){
             return $validator->messages();
         }
@@ -53,10 +54,17 @@ class HabitacionReservaController extends Controller
         $habitacion_reserva->habitacion_id = $request->get('habitacion_id');
         $habitacion_reserva->reserva_id = $request->get('reserva_id');
         $habitacion_reserva->precio = $request->get('precio');
-        $habitacion_reserva->fecha_inicio = $request->get('fecha_inicio');
-        $habitacion_reserva->fecha_termino = $request->get('fecha_termino');
+        try{
+            $tiempo1 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_inicio'));
+            $tiempo2 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_termino'));
+        }
+        catch(\Exception $e){
+            return json_encode(['outcome' => 'error']);
+        }
+        $habitacion_reserva->fecha_inicio = $tiempo1;
+        $habitacion_reserva->fecha_termino = $tiempo2;
         $habitacion_reserva->save();
-        return $habitacion_reserva;*/
+        return $habitacion_reserva;
     }
 
     /**
@@ -90,7 +98,24 @@ class HabitacionReservaController extends Controller
      */
     public function update(Request $request, habitacion_reserva $habitacion_reserva)
     {
-        //
+        $validator = Validator::make($request->all(),$this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        $habitacion_reserva->habitacion_id = $request->get('habitacion_id');
+        $habitacion_reserva->reserva_id = $request->get('reserva_id');
+        $habitacion_reserva->precio = $request->get('precio');
+        try{
+            $tiempo1 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_inicio'));
+            $tiempo2 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_termino'));
+        }
+        catch(\Exception $e){
+            return json_encode(['outcome' => 'error']);
+        }
+        $habitacion_reserva->fecha_inicio = $tiempo1;
+        $habitacion_reserva->fecha_termino = $tiempo2;
+        $habitacion_reserva->save();
+        return $habitacion_reserva;
     }
 
     /**
@@ -101,6 +126,11 @@ class HabitacionReservaController extends Controller
      */
     public function destroy(habitacion_reserva $habitacion_reserva)
     {
-        //
+        if($habitacion_reserva->es_valido){
+            $habitacion_reserva->es_valido = false;
+            $habitacion_reserva->save();
+            return json_encode(['outcome' => 'success']);
+        }
+        return json_encode(['outcome' => 'error']);
     }
 }
