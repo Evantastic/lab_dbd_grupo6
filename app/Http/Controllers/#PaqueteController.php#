@@ -54,8 +54,8 @@ class PaqueteController extends Controller
         $paquete = new \App\Paquete;
         $paquete->recorrido_id = $request->get('recorrido_id'); 
         $paquete->habitacion_id = $request->get('habitacion_id');
-        'vehiculo_id'
-        'descuento'
+        $paquete->vehiculo_id = $request->get('vehiculo_id');
+        $paquete->descuento = $request->get('descuento')
         'tipo'
         'cantidad_personas'
         'fecha_expiracion'
