@@ -18,8 +18,7 @@ class Paquete extends Model
         'vehiculo_id',
         'descuento',
         'tipo',
-        'cantidad_personas',
-        'fecha_expiracion'
+        'cantidad_personas'
     ];
     
     public function recorrido(){

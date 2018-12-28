@@ -46,7 +46,7 @@ class RecorridoController extends Controller
      */
     public function show(Recorrido $recorrido)
     {
-        //
+        return $recorrido;
     }
 
     /**

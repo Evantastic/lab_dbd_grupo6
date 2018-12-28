@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 
 use App\queryLog;
 use Illuminate\Http\Request;
+use Validator;
+use Carbon\Carbon;
 
 class QueryLogController extends Controller
 {
+    public function rules(){
+        return [
+            'query' => 'required|string',
+            'user_id' => 'required|numeric|exists:users,id',
+            'fecha_consulta' => 'required|string'
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,7 @@ class QueryLogController extends Controller
      */
     public function index()
     {
-        //
+        return queryLog::all();
     }
 
     /**
@@ -35,7 +44,22 @@ class QueryLogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), $this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        $queryLog = new \App\queryLog;
+        $queryLog->query = $request->get('query');
+        $queryLog->user_id = $request->get('user_id');
+        try{
+            $tiempo = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_consulta'));
+        }
+        catch(\Exception $e){
+            return json_encode(['outcome' => 'error']);
+        }
+        $queryLog->fecha_consulta = $tiempo;
+        $queryLog->save();
+        return $queryLog;
     }
 
     /**
@@ -44,9 +68,15 @@ class QueryLogController extends Controller
      * @param  \App\queryLog  $queryLog
      * @return \Illuminate\Http\Response
      */
-    public function show(queryLog $queryLog)
+    public function show($id)
     {
-        //
+        try{
+            $queryLog = queryLog::findOrFail($id);
+            return $queryLog;
+        }
+        catch(\Exception $e){
+            return json_encode(['outcome' => 'error']);
+        }
     }
 
     /**
@@ -67,9 +97,30 @@ class QueryLogController extends Controller
      * @param  \App\queryLog  $queryLog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, queryLog $queryLog)
+    public function update(Request $request,$id)
     {
-        //
+        try{
+            $queryLog = queryLog::findOrFail($id);
+        }
+        catch(\Exception $e){
+            return json_encode(['outcome' => 'error']);
+        }
+        $validator = Validator::make($request->all(), $this->rules());
+        if($validator->fails()){
+            return $validator->messages();
+        }
+        $queryLog = new \App\queryLog;
+        $queryLog->query = $request->get('query');
+        $queryLog->user_id = $request->get('user_id');
+        try{
+            $tiempo = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_consulta'));
+        }
+        catch(\Exception $e){
+            return json_encode(['outcome' => 'error']);
+        }
+        $queryLog->fecha_consulta = $tiempo;
+        $queryLog->save();
+        return $queryLog;
     }
 
     /**
@@ -78,8 +129,19 @@ class QueryLogController extends Controller
      * @param  \App\queryLog  $queryLog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(queryLog $queryLog)
+    public function destroy($id)
     {
-        //
+        try{
+            $queryLog = queryLog::findOrFail($id);
+        }
+        catch(\Exception $e){
+            return json_encode(['outcome' => 'error']);
+        }
+        if($queryLog->es_valido){
+            $queryLog->es_valido = false;
+            $queryLog->save();
+            return json_encode(['outcome' => 'success']);
+        }
+        return json_encode(['outcome' => 'error']);
     }
 }
