@@ -32,7 +32,7 @@ Route::resource('/pasaje','PasajeController');
 Route::resource('/compra','CompraController');
 Route::resource('/reserva','ReservaController');
 Route::resource('/usuario','UserController');
-Route::resource('/log','QueryLogController');
+Route::resource('/queryLog','QueryLogController');
 Route::resource('/recorrido_reserva','RecorridoReservaController');
 Route::resource('/habitacion_reserva','HabitacionReservaController');
 Route::resource('/paquete_reserva','PaqueteReservaController');
