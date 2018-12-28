@@ -42,18 +42,18 @@
 ** DONE Factory
 ** DONE Seeder
 ** DONE Controller
-* TODO Paquete (Fecha) [4/5]
+* DONE Paquete (Fecha) [5/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-** TODO Controller
-* TODO Vuelo (Fecha) [4/5]
+** DONE Controller
+* DONE Vuelo (Fecha) [5/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-** TODO Controller
+** DONE Controller
 * TODO Recorrido [4/5]
 ** DONE Migración
 ** DONE Modelo
@@ -66,12 +66,12 @@
 ** DONE Factory
 ** DONE Seeder
 ** TODO Controller
-* TODO Compra (Fecha) [4/5]
+* DONE Compra (Fecha) [5/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-** TODO Conrtoller
+** DONE Conrtoller
 * TODO Reserva [4/5]
 ** DONE Migración
 ** DONE Modelo
@@ -84,36 +84,36 @@
 ** DONE Factory
 ** DONE Seeder
 ** TODO Controller
-* TODO queryLog (Fecha) [4/5]
+* DONE queryLog (Fecha) [5/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-** TODO Controller
+** DONE Controller
 * DONE Recorrido_Reserva [5/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
 ** DONE Controller
-* TODO Habitación_Reserva (Fecha) [4/5]
+* DONE Habitación_Reserva (Fecha) [5/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-** TODO Controller
+** DONE Controller
 * TODO Paquete_Reserva [4/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
 ** TODO Controller
-* TODO Reserva_Vehículo (Fecha) [4/5]
+* DONE Reserva_Vehículo (Fecha) [5/5]
 ** DONE Migración
 ** DONE Modelo
 ** DONE Factory
 ** DONE Seeder
-** TODO Controller
+** DONE Controller
 * TODO Recorrido_Vuelo [4/5]
 ** DONE Migración
 ** DONE Modelo
