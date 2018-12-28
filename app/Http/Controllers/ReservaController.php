@@ -10,7 +10,7 @@ class ReservaController extends Controller
     public function rules(){
         return  [
        
-        'costo'=>'required|numeric|max:1000',
+        'costo'=>'required|numeric|max:10000000',
         'seguro'=>'required|boolean',
         
         ];
@@ -115,5 +115,5 @@ class ReservaController extends Controller
         }
         return json_encode(['outcome' => 'error']);//
     }//
-    }
+    
 }

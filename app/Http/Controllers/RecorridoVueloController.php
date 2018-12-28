@@ -94,11 +94,11 @@ class RecorridoVueloController extends Controller
         }
         
         
-        $Recorrido_Vuelo->recorrido_id = $request->get('recorrido_id');
-        $Recorrido_Vuelo->vuelo_id = $request->get('vuelo_id');
+        $recorrido_Vuelo->recorrido_id = $request->get('recorrido_id');
+        $recorrido_Vuelo->vuelo_id = $request->get('vuelo_id');
         
-        $Recorrido_Vuelo->save();
-        return $Recorrido_Vuelo; //
+        $recorrido_Vuelo->save();
+        return $recorrido_Vuelo; //
     }
 
     /**

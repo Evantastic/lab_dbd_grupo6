@@ -13,7 +13,7 @@ class PaqueteReservaController extends Controller
 
         'paquete_id' => 'required|numeric|exists:paquetes,id',
         'reserva_id' => 'required|numeric|exists:reservas,id',
-        'descuento' => 'required|numeric|,max:80'
+        'descuento' => 'required|numeric|max:80'
 
         ];
     }
@@ -117,5 +117,5 @@ class PaqueteReservaController extends Controller
         }
         return json_encode(['outcome' => 'error']);//
     } //
-    }
+    
 }
