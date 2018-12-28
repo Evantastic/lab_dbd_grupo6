@@ -1,3 +1,6 @@
+DROP TRIGGER crearLog ON "users" CASCADE;
+DROP TRIGGER crearQueryLog ON "queryLogs" CASCADE;
+DROP TRIGGER crearCompra ON compras CASCADE;
 DROP TABLE aeropuertos CASCADE;
 DROP TABLE viajes CASCADE;
 DROP TABLE ciudades CASCADE;
@@ -19,4 +22,3 @@ DROP TABLE reserva_vehiculos CASCADE;
 DROP TABLE recorrido_vuelos CASCADE;
 DROP TABLE migrations CASCADE;
 DROP TABLE paquete_reservas CASCADE;
-DROP TABLE password_resets CASCADE;

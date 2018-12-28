@@ -1,7 +1,5 @@
 create table "users" ("id" serial primary key not null, "name" varchar(128) not null, "apellido" varchar(128) not null, "nacionalidad" varchar(32) not null, "edad" smallint not null, "tipoUsuario" smallint not null, "email" varchar(128) not null, "email_verified_at" timestamp(0) without time zone null, "password" varchar(64) not null, "es_valido" boolean not null default '1', "remember_token" varchar(100) null, "created_at" timestamp(0) without time zone null, "updated_at" timestamp(0) without time zone null);
 alter table "users" add constraint "users_email_unique" unique ("email");
-create table "password_resets" ("email" varchar(255) not null, "token" varchar(255) not null, "created_at" timestamp(0) without time zone null);
-create index "password_resets_email_index" on "password_resets" ("email");
 create table "ciudades" ("id" serial primary key not null, "nombre" varchar(128) not null, "nombre_pais" varchar(128) not null, "es_valido" boolean not null default '1', "created_at" timestamp(0) without time zone null, "updated_at" timestamp(0) without time zone null);
 create table "hoteles" ("id" serial primary key not null, "ciudad_id" integer not null, "nombre" varchar(64) not null, "direccion" varchar(128) not null, "estrellas" smallint not null, "descripcion" text not null, "es_valido" boolean not null default '1', "created_at" timestamp(0) without time zone null, "updated_at" timestamp(0) without time zone null);
 alter table "hoteles" add constraint "hoteles_ciudad_id_foreign" foreign key ("ciudad_id") references "ciudades" ("id");
