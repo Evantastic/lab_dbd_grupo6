@@ -18,6 +18,11 @@ class Compra extends Model
     protected $dates = [
     	'fecha_compra'
     ];
+
+    public function getDateFormat()
+    {
+        return 'Y-m-d H:i:s';
+    }
     
     public function reserva(){
         return $this->belongsTo(Reserva::class);

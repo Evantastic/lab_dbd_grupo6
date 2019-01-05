@@ -7,7 +7,6 @@ $factory->define(App\queryLog::class, function (Faker $faker) {
 	$users = DB::table('users')->select('id')->get();  
     return [
     	'query'=> $faker->text(), 
-      	'user_id'=> $users->random()->id,
-      	'fecha_consulta' => $faker->dateTime
+      	'user_id'=> $users->random()->id
     ];
 });

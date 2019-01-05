@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\paquete_reserva;
+use App\Paquete_Reserva;
 use Illuminate\Http\Request;
 use Validator;
 class PaqueteReservaController extends Controller
@@ -24,7 +24,7 @@ class PaqueteReservaController extends Controller
      */
     public function index()
     {
-       return \App\Paquete_Reserva::all(); //
+       return Paquete_Reserva::all(); //
     }
 
     /**

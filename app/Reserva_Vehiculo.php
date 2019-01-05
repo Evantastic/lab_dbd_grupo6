@@ -13,13 +13,20 @@ class Reserva_Vehiculo extends Model
     protected $fillable  = [
         'vehiculo_id',
         'reserva_id',
-        'precio'
+        'precio',
+        'fecha_inicio',
+        'fecha_termino'
     ];
 
     protected $dates = [
         'fecha_inicio',
         'fecha_termino'
     ];
+
+    public function getDateFormat()
+    {
+        return 'Y-m-d H:i:s';
+    }
 
     public function vehiculo(){
         return $this->belongsTo(Vehiculo::class);

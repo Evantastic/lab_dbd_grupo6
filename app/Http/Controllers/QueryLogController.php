@@ -9,11 +9,19 @@ use Carbon\Carbon;
 
 class QueryLogController extends Controller
 {
-    public function rules(){
+    public function rulesPost(){
         return [
             'query' => 'required|string',
             'user_id' => 'required|numeric|exists:users,id',
             'fecha_consulta' => 'required|string'
+        ];
+    }
+
+    public function rulesPut(){
+        return [
+            'query' => 'nullable|string',
+            'user_id' => 'nullable|numeric|exists:users,id',
+            'fecha_consulta' => 'nullable|string'
         ];
     }
     /**
@@ -44,21 +52,13 @@ class QueryLogController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPost());
         if($validator->fails()){
             return $validator->messages();
         }
-        $queryLog = new \App\queryLog;
-        $queryLog->query = $request->get('query');
-        $queryLog->user_id = $request->get('user_id');
-        try{
-            $tiempo = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_consulta'));
-        }
-        catch(\Exception $e){
-            return json_encode(['outcome' => 'error']);
-        }
-        $queryLog->fecha_consulta = $tiempo;
-        $queryLog->save();
+
+        $queryLog = queryLog::create($request->all());
+        
         return $queryLog;
     }
 
@@ -105,21 +105,14 @@ class QueryLogController extends Controller
         catch(\Exception $e){
             return json_encode(['outcome' => 'error']);
         }
-        $validator = Validator::make($request->all(), $this->rules());
+        
+        $validator = Validator::make($request->all(), $this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        $queryLog = new \App\queryLog;
-        $queryLog->query = $request->get('query');
-        $queryLog->user_id = $request->get('user_id');
-        try{
-            $tiempo = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_consulta'));
-        }
-        catch(\Exception $e){
-            return json_encode(['outcome' => 'error']);
-        }
-        $queryLog->fecha_consulta = $tiempo;
-        $queryLog->save();
+        
+        $queryLog->update($request->all());
+        
         return $queryLog;
     }
 

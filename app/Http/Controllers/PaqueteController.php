@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class PaqueteController extends Controller
 {
-    public function rules(){
+    public function rulesPost(){
         return [
         'recorrido_id' => 'required|numeric|exists:recorridos,id',
         'habitacion_id' => 'required|numeric|exists:habitaciones,id',
@@ -17,7 +17,19 @@ class PaqueteController extends Controller
         'descuento' => 'required|numeric',
         'tipo' => 'required|numeric',
         'cantidad_personas' => 'required|numeric',
-        'fecha_expiracion' => 'required|string'
+        'fecha_expiracion' => 'required|date'
+        ];
+    }
+
+    public function rulesPut(){
+        return [
+        'recorrido_id' => 'nullable|numeric|exists:recorridos,id',
+        'habitacion_id' => 'nullable|numeric|exists:habitaciones,id',
+        'vehiculo_id' => 'nullable|numeric|exists:vehiculos,id',
+        'descuento' => 'nullable|numeric',
+        'tipo' => 'nullable|numeric',
+        'cantidad_personas' => 'nullable|numeric',
+        'fecha_expiracion' => 'nullable|date'
         ];
     }
     /**
@@ -48,25 +60,13 @@ class PaqueteController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPost());
         if($validator->fails()){
             return $validator->messages();
         }
-        $paquete = new \App\Paquete;
-        $paquete->recorrido_id = $request->get('recorrido_id'); 
-        $paquete->habitacion_id = $request->get('habitacion_id');
-        $paquete->vehiculo_id = $request->get('vehiculo_id');
-        $paquete->descuento = $request->get('descuento');
-        $paquete->tipo = $request->get('tipo');
-        $paquete->cantidad_personas = $request->get('cantidad_personas');
-        try{
-            $tiempo = Carbon::createFromFormat('d/m/Y', $request->get('fecha_expiracion'));
-        }
-        catch(\Exception $e){
-            return json_encode(['outcome' => 'error']);
-        }
-        $paquete->fecha_expiracion = $tiempo;
-        $paquete->save();
+
+        $paquete = Paquete::create($request->all());
+        
         return $paquete;
     }
 
@@ -101,24 +101,13 @@ class PaqueteController extends Controller
      */
     public function update(Request $request, Paquete $paquete)
     {
-        $validator = Validator::make($request->all(), $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        $paquete->recorrido_id = $request->get('recorrido_id'); 
-        $paquete->habitacion_id = $request->get('habitacion_id');
-        $paquete->vehiculo_id = $request->get('vehiculo_id');
-        $paquete->descuento = $request->get('descuento');
-        $paquete->tipo = $request->get('tipo');
-        $paquete->cantidad_personas = $request->get('cantidad_personas');
-        try{
-            $tiempo = Carbon::createFromFormat('d/m/Y', $request->get('fecha_expiracion'));
-        }
-        catch(\Exception $e){
-            return json_encode(['outcome' => 'error']);
-        }
-        $paquete->fecha_expiracion = $tiempo;
-        $paquete->save();
+
+        $paquete->update($request->all());
+        
         return $paquete;
     }
 

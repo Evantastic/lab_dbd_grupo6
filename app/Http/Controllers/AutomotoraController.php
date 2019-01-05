@@ -8,12 +8,19 @@ use Illuminate\Http\Request;
 
 class AutomotoraController extends Controller
 {
-
-    public function rules(){
+    public function rulesPost(){
         return [
             'ciudad_id' => 'required|numeric|exists:ciudades,id',
             'direccion' => 'required|string|max:128',
             'nombre' => 'required|string|max:64'
+        ];
+    }
+
+    public function rulesPut(){
+        return [
+            'ciudad_id' => 'nullable|numeric|exists:ciudades,id',
+            'direccion' => 'nullable|string|max:128',
+            'nombre' => 'nullable|string|max:64'
         ];
     }
     /**
@@ -44,15 +51,13 @@ class AutomotoraController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPost());
         if($validator->fails()){
             return $validator->messages();
         }
-        $automotora = new \App\Automotora;
-        $automotora->ciudad_id = $request->get('ciudad_id');
-        $automotora->direccion = $request->get('direccion');
-        $automotora->nombre = $request->get('nombre');
-        $automotora->save();
+
+        $automotora = Automotora::create($request->all());
+        
         return $automotora;
     }
 
@@ -87,14 +92,13 @@ class AutomotoraController extends Controller
      */
     public function update(Request $request, Automotora $automotora)
     {
-        $validator = Validator::make($request->all(), $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        $automotora->ciudad_id = $request->get('ciudad_id');
-        $automotora->direccion = $request->get('direccion');
-        $automotora->nombre = $request->get('nombre');
-        $automotora->save();
+
+        $automotora->update($request->all());
+        
         return $automotora;
     }
 
