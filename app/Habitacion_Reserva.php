@@ -13,13 +13,20 @@ class Habitacion_Reserva extends Model
     protected $fillable = [
         'habitacion_id',
         'reserva_id',
-        'precio'
+        'precio',
+        'fecha_inicio',
+        'fecha_termino'
     ];
 
     protected $dates = [
         'fecha_inicio',
         'fecha_termino'
     ];
+
+    public function getDateFormat()
+    {
+        return 'Y-m-d H:i:s';
+    }
 
     public function habitacion(){
         return $this->belongsTo(Habitacion::class);

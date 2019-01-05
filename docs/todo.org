@@ -1,122 +1,25 @@
 # -*- coding: utf-8 -*-
 #+title: TODO
-* DONE Aerouperto [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* DONE Viaje [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* DONE Ciudad [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* DONE Automotora [5/5]
-** DONE Migración
-** DONE Model
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* DONE Hotel [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* DONE Habitación [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* DONE Vehículo [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* DONE Paquete (Fecha) [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* DONE Vuelo (Fecha) [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* TODO Recorrido [4/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** TODO Controller
-* TODO Pasaje [4/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** TODO Controller
-* DONE Compra (Fecha) [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Conrtoller
-* TODO Reserva [4/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** TODO Controller
-* TODO Usuario [4/5]
-** DONE Migración
-** DONE Model
-** DONE Factory
-** DONE Seeder
-** TODO Controller
-* DONE queryLog (Fecha) [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* DONE Recorrido_Reserva [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* DONE Habitación_Reserva (Fecha) [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* TODO Paquete_Reserva [4/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** TODO Controller
-* DONE Reserva_Vehículo (Fecha) [5/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** DONE Controller
-* TODO Recorrido_Vuelo [4/5]
-** DONE Migración
-** DONE Modelo
-** DONE Factory
-** DONE Seeder
-** TODO Controller
+
+* Alan
+** Aerouperto
+** Viaje
+** Ciudad
+** Automotora
+** Hotel
+** Habitación
+** Vehículo
+** TODO Paquete
+** TODO Vuelo
+** Recorrido
+* Claudio
+** Pasaje
+** TODO Compra
+** Reserva
+** Usuario
+** TODO queryLog
+** Recorrido_Reserva
+** TODO Habitación_Reserva 
+** Paquete_Reserva
+** TODO Reserva_Vehículo 
+** Recorrido_Vuelo

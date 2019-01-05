@@ -13,7 +13,7 @@ $factory->define(App\Vuelo::class, function (Faker $faker) {
         'aeropuerto_origen_id' => $aeropuertoOrigen,
         'aeropuerto_destino_id' => $aeropuertoDestino,
         'capacidad_economica' => rand(50,100),
-        'capacidad_business' => rand(50,100),
+        'capacidad_bussiness' => rand(50,100),
         'capacidad_discapacidad_economica' => rand(5,15),
         'capacidad_discapacidad_bussiness' => rand(5,15),
         'tiempo_salida' => $faker->dateTime,

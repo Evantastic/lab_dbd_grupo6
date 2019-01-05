@@ -18,8 +18,14 @@ class Paquete extends Model
         'vehiculo_id',
         'descuento',
         'tipo',
-        'cantidad_personas'
+        'cantidad_personas',
+        'fecha_expiracion'
     ];
+
+    public function getDateFormat()
+    {
+        return 'Y-m-d H:i:s';
+    }
     
     public function recorrido(){
         return $this->belongsTo(Recorrido::class);

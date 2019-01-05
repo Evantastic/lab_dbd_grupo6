@@ -8,11 +8,19 @@ use Validator;
 
 class AeropuertoController extends Controller
 {
-    public function rules(){
+    public function rulesPost(){
         return  [
             'ciudad_id' => 'required|numeric|exists:ciudades,id',
             'nombre' => 'required|string|max:128',
             'direccion' => 'required|string|max:64'
+        ];
+    }
+
+    public function rulesPut(){
+        return  [
+            'ciudad_id' => 'nullable|numeric|exists:ciudades,id',
+            'nombre' => 'nullable|string|max:128',
+            'direccion' => 'nullable|string|max:64'
         ];
     }
     
@@ -44,16 +52,13 @@ class AeropuertoController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),$this->rules());
+        $validator = Validator::make($request->all(),$this->rulesPost());
         if($validator->fails()){
             return $validator->messages(); 
         }
         
-        $aeropuerto = new \App\Aeropuerto;
-        $aeropuerto->nombre = $request->get('nombre');
-        $aeropuerto->direccion = $request->get('direccion');
-        $aeropuerto->ciudad_id = $request->get('ciudad_id');
-        $aeropuerto->save();
+        $aeropuerto = Aeropuerto::create($request->all());
+        
         return $aeropuerto;
     }
 
@@ -88,15 +93,13 @@ class AeropuertoController extends Controller
      */
     public function update(Request $request, Aeropuerto $aeropuerto)
     {
-        $validator = Validator::make($request->all(),$this->rules());
+        $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
             return json_encode(['outcome' => 'error']); 
         }
         
-        $aeropuerto->nombre = $request->get('nombre');
-        $aeropuerto->direccion = $request->get('direccion');
-        $aeropuerto->ciudad_id = $request->get('ciudad_id');
-        $aeropuerto->save();
+        $aeropuerto->update($request->all());
+        
         return $aeropuerto;
     }
 

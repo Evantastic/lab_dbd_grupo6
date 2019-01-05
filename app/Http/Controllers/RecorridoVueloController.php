@@ -21,7 +21,7 @@ class RecorridoVueloController extends Controller
      */
     public function index()
     {
-       return \App\Recorrido_Vuelo::all(); //
+       return Recorrido_Vuelo::all(); //
     }
 
     /**

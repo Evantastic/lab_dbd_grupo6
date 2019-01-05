@@ -8,13 +8,23 @@ use Illuminate\Http\Request;
 
 class HabitacionController extends Controller
 {
-    public function rules(){
+    public function rulesPost(){
         return [
             'hotel_id' => 'required|numeric|exists:hoteles,id',
             'numero_habitacion' => 'required|numeric',
             'capacidad' => 'required|numeric',
             'descripcion' => 'required|string',
             'precio' => 'required|numeric'
+        ];
+    }
+
+    public function rulesPut(){
+        return [
+            'hotel_id' => 'nullable|numeric|exists:hoteles,id',
+            'numero_habitacion' => 'nullable|numeric',
+            'capacidad' => 'nullable|numeric',
+            'descripcion' => 'nullable|string',
+            'precio' => 'nullable|numeric'
         ];
     }
     /**
@@ -45,18 +55,13 @@ class HabitacionController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),
-                                     $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPost());
         if($validator->fails()){
             return $validator->messages();
         }
-        $habitacion = new \App\Habitacion;
-        $habitacion->hotel_id = $request->get('hotel_id');
-        $habitacion->numero_habitacion = $request->get('numero_habitacion');
-        $habitacion->capacidad = $request->get('capacidad');
-        $habitacion->descripcion = $request->get('descripcion');
-        $habitacion->precio = $request->get('precio');
-        $habitacion->save();
+
+        $habitacion = Habitacion::create($request->all());
+        
         return $habitacion;
     }
 
@@ -91,17 +96,12 @@ class HabitacionController extends Controller
      */
     public function update(Request $request, Habitacion $habitacion)
     {
-        $validator = Validator::make($request->all(),
-                                     $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        $habitacion->hotel_id = $request->get('hotel_id');
-        $habitacion->numero_habitacion = $request->get('numero_habitacion');
-        $habitacion->capacidad = $request->get('capacidad');
-        $habitacion->descripcion = $request->get('descripcion');
-        $habitacion->precio = $request->get('precio');
-        $habitacion->save();
+
+        $habitacion->update($request->all());
         return $habitacion;
     }
 
