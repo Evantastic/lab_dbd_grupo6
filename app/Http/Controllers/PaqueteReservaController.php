@@ -17,6 +17,15 @@ class PaqueteReservaController extends Controller
 
         ];
     }
+        public function rules(){
+        return  [
+
+        'paquete_id' => 'nullable|numeric|exists:paquetes,id',
+        'reserva_id' => 'nullable|numeric|exists:reservas,id',
+        'descuento' => 'nullable|numeric|max:80'
+
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,11 +59,8 @@ class PaqueteReservaController extends Controller
             return $validator->messages(); 
         }
         
-        $paquete_reserva = new \App\Paquete_Reserva;
-        $paquete_reserva->paquete_id = $request->get('paquete_id');
-        $paquete_reserva->reserva_id = $request->get('reserva_id');
-        $paquete_reserva->descuento = $request->get('descuento');
-        $paquete_reserva->save();
+        $paquete_reserva = Paquete_Reserva::create($request->all());
+
         return $paquete_reserva;//
     }
 
@@ -89,16 +95,13 @@ class PaqueteReservaController extends Controller
      */
     public function update(Request $request, paquete_reserva $paquete_reserva)
     {
-               $validator = Validator::make($request->all(),$this->rules());
+               $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
             return $validator->messages(); 
         }
         
  
-        $paquete_reserva->paquete_id = $request->get('paquete_id');
-        $paquete_reserva->reserva_id = $request->get('reserva_id');
-        $paquete_reserva->descuento = $request->get('descuento');
-        $paquete_reserva->save();
+        $paquete_reserva->update($request->all());
         return $paquete_reserva;// //
     }
 

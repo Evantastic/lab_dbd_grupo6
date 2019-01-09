@@ -15,6 +15,14 @@ class ReservaController extends Controller
         
         ];
     }
+    public function rulesPut(){
+        return  [
+       
+        'costo'=>'nullable|numeric|max:10000000',
+        'seguro'=>'nullable|boolean',
+        
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,11 +56,7 @@ class ReservaController extends Controller
             return $validator->messages(); 
         }
         
-        $reserva = new \App\Reserva;
-        $reserva->costo = $request->get('costo');
-        $reserva->seguro = $request->get('seguro');
-
-        $reserva->save();
+        $reserva = Reserva::create($request->all());
         return $reserva;//  //
     }
 
@@ -87,16 +91,13 @@ class ReservaController extends Controller
      */
     public function update(Request $request, Reserva $reserva)
     {
-                   $validator = Validator::make($request->all(),$this->rules());
+                   $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
             return $validator->messages(); 
         }
         
 
-        $reserva->costo = $request->get('costo');
-        $reserva->seguro = $request->get('seguro');
-
-        $reserva->save();
+        $reserva->update($request->all());
         return $reserva;   //
     }
 

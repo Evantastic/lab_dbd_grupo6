@@ -17,6 +17,15 @@ class HotelController extends Controller
         ];
                     
     }
+        public function rulesPut(){
+        return ['ciudad_id' => 'nullable|numeric|exists:ciudades,id',
+                'nombre' => 'nullable|string|max:64',
+                'direccion' => 'nullable|string|max:128',
+                'estrellas' => 'nullable|numeric|between:1,5',
+                'descripcion' => 'nullable|string'
+        ];
+                    
+    }
 
     /**
      * Display a listing of the resource.
@@ -51,13 +60,8 @@ class HotelController extends Controller
             return $validator->messages();
         }
         
-        $hotel = new \App\Hotel;
-        $hotel->ciudad_id = $request->get('ciudad_id');
-        $hotel->nombre = $request->get('nombre');
-        $hotel->direccion = $request->get('direccion');
-        $hotel->estrellas = $request->get('estrellas');
-        $hotel->descripcion = $request->get('descripcion');
-        $hotel->save();
+        $hotel = Hotel::create($request->all());
+       
         return $hotel;
     }
 
@@ -92,16 +96,12 @@ class HotelController extends Controller
      */
     public function update(Request $request, Hotel $hotel)
     {
-        $validator = Validator::make($request->all(),$this->rules());
+        $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        $hotel->ciudad_id = $request->get('ciudad_id');
-        $hotel->nombre = $request->get('nombre');
-        $hotel->direccion = $request->get('direccion');
-        $hotel->estrellas = $request->get('estrellas');
-        $hotel->descripcion = $request->get('descripcion');
-        $hotel->save();
+        $hotel->update($request->all());
+
         return $hotel;
     }
 
