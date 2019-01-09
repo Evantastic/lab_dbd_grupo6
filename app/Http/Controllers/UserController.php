@@ -19,7 +19,20 @@ class UserController extends Controller
 
 
         ];
-    }    
+    }   
+        public function rulesPut(){
+        return[
+        'name'=>'nullable|string|max:128',
+        'apellido'=>'nullable|string|max:128',
+        'nacionalidad'=>'nullable|string|max:32',
+        'edad'=>'nullable|numeric|max:100',
+        'tipoUsuario'=>'nullable|numeric|max:10',
+        'email'=>'nullable|string|max:32',
+        'password'=>'nullable|string|max:32'
+
+
+        ];
+    }  
     /**
      * Display a listing of the resource.
      *
@@ -110,7 +123,7 @@ class UserController extends Controller
         catch(\Exception $e){
             return json_encode(['outcome' => 'error']);
         }
-        $validator = Validator::make($request->all(),$this->rules());
+        $validator = Validator::make($request->all(),$this->rulePut());
         if($validator->fails()){
             return $validator->messages(); 
         }
