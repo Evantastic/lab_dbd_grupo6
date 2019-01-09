@@ -8,12 +8,20 @@ use Illuminate\Http\Request;
 
 class CiudadController extends Controller
 {
-    public function rules(){
+    public function rulesPost(){
         return [
             'nombre' => 'required|string|max:128',
             'nombre_pais' => 'required|string|max:128'
         ];
     }
+
+    public function rulesPut(){
+        return [
+            'nombre' => 'nullable|string|max:128',
+            'nombre_pais' => 'nullable|string|max:128'
+        ];
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -42,15 +50,13 @@ class CiudadController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),
-                                     $this->rules());
+        $validator = Validator::make($request->all(),$this->rulesPost());
         if($validator->fails()){
             return $validator->messages();
         }
-        $ciudad = new \App\Ciudad;
-        $ciudad->nombre = $request->get('nombre');
-        $ciudad->nombre_pais = $request->get('nombre_pais');
-        $ciudad->save();
+
+        $ciudad = Ciudad::create($request->all());
+        
         return $ciudad;
     }
 
@@ -85,14 +91,13 @@ class CiudadController extends Controller
      */
     public function update(Request $request, Ciudad $ciudad)
     {
-        $validator = Validator::make($request->all(),
-                                     $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        $ciudad->nombre = $request->get('nombre');
-        $ciudad->nombre_pais = $request->get('nombre_pais');
-        $ciudad->save();
+
+        $ciudad->update($request->all());
+        
         return $ciudad;
     }
 

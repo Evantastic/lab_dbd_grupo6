@@ -9,17 +9,31 @@ use Carbon\Carbon;
 
 class VueloController extends Controller
 {
-    public function rules(){
+    public function rulesPost(){
         return [
             'aeropuerto_origen_id' => 'required|numeric|exists:aeropuertos,id',
             'aeropuerto_destino_id' => 'required|numeric|exists:aeropuertos,id|different:aeropuerto_origen_id',
             'capacidad_economica' => 'required|numeric',
-            'capacidad_business' => 'required|numeric',
+            'capacidad_bussiness' => 'required|numeric',
             'capacidad_discapacidad_bussiness' => 'required|numeric',
             'capacidad_discapacidad_economica' => 'required|numeric',
-            'tiempo_salida' => 'required|string',
-            'tiempo_llegada' => 'required|string|different:tiempo_salida',
+            'tiempo_salida' => 'required|date',
+            'tiempo_llegada' => 'required|date|different:tiempo_salida',
             'patente' => 'required|string|max:16'
+        ];
+    }
+
+    public function rulesPut(){
+        return [
+            'aeropuerto_origen_id' => 'nullable|numeric|exists:aeropuertos,id',
+            'aeropuerto_destino_id' => 'nullable|numeric|exists:aeropuertos,id|different:aeropuerto_origen_id',
+            'capacidad_economica' => 'nullable|numeric',
+            'capacidad_bussiness' => 'nullable|numeric',
+            'capacidad_discapacidad_bussiness' => 'nullable|numeric',
+            'capacidad_discapacidad_economica' => 'nullable|numeric',
+            'tiempo_salida' => 'nullable|date',
+            'tiempo_llegada' => 'nullable|date|different:tiempo_salida',
+            'patente' => 'nullable|string|max:16'
         ];
     }
     /**
@@ -49,29 +63,15 @@ class VueloController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), $this->rules());
+   {
+        $validator = Validator::make($request->all(), $this->rulesPost());
+        
         if($validator->fails()){
             return $validator->messages();
         }
-        $vuelo = new \App\Vuelo;
-        $vuelo->aeropuerto_origen_id = $request->get('aeropuerto_origen_id');
-        $vuelo->aeropuerto_destino_id = $request->get('aeropuerto_destino_id');
-        $vuelo->capacidad_economica = $request->get('capacidad_economica');
-        $vuelo->capacidad_business = $request->get('capacidad_business');
-        $vuelo->capacidad_discapacidad_bussiness = $request->get('capacidad_discapacidad_bussiness');
-        $vuelo->capacidad_discapacidad_economica = $request->get('capacidad_discapacidad_economica');
-        try{
-            $tiempo1 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('tiempo_salida'));
-            $tiempo2 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('tiempo_llegada'));
-        }
-        catch(\Exception $e){
-            return json_encode(['outcome' => 'error']);
-        }
-        $vuelo->tiempo_salida = $tiempo1;
-        $vuelo->tiempo_llegada = $tiempo2;
-        $vuelo->patente = $request->get('patente');
-        $vuelo->save();
+        
+        $vuelo = Vuelo::create($request->all());
+        
         return $vuelo;
     }
 
@@ -106,28 +106,13 @@ class VueloController extends Controller
      */
     public function update(Request $request, Vuelo $vuelo)
     {
-        $validator = Validator::make($request->all(), $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        $vuelo->aeropuerto_origen_id = $request->get('aeropuerto_origen_id');
-        $vuelo->aeropuerto_destino_id = $request->get('aeropuerto_destino_id');
-        $vuelo->capacidad_economica = $request->get('capacidad_economica');
-        $vuelo->capacidad_business = $request->get('capacidad_business');
-        $vuelo->capacidad_discapacidad_bussiness = $request->get(
-            'capacidad_discapacidad_bussiness');
-        $vuelo->capacidad_discapacidad_economica = $request->get('capacidad_discapacidad_economica');
-        try{
-            $tiempo1 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('tiempo_salida'));
-            $tiempo2 = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('tiempo_llegada'));
-        }
-        catch(\Exception $e){
-            return json_encode(['outcome' => 'error']);
-        }
-        $vuelo->tiempo_salida = $tiempo1;
-        $vuelo->tiempo_llegada = $tiempo2;
-        $vuelo->patente = $request->get('patente');
-        $vuelo->save();
+
+        $vuelo->update($request->all());
+
         return $vuelo;
     }
 

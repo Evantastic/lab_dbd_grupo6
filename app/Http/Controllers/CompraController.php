@@ -9,11 +9,19 @@ use Carbon\Carbon;
 
 class CompraController extends Controller
 {
-    public function rules(){
+    public function rulesPost(){
         return [
             'reserva_id' => 'required|numeric|exists:reservas,id',
             'user_id' => 'required|numeric|exists:users,id',
             'fecha_compra' => 'required|string'
+        ];
+    }
+
+    public function rulesPut(){
+        return [
+            'reserva_id' => 'nullable|numeric|exists:reservas,id',
+            'user_id' => 'nullable|numeric|exists:users,id',
+            'fecha_compra' => 'nullable|string'
         ];
     }
     /**
@@ -44,21 +52,13 @@ class CompraController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPost());
         if($validator->fails()){
             return $validator->messages();
         }
-        $compra = new \App\Compra;
-        $compra->reserva_id = $request->get('reserva_id');
-        $compra->user_id = $request->get('user_id');
-        try{
-            $tiempo = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_compra'));
-        }
-        catch(\Exception $e){
-            return json_encode(['outcome' => 'error']);
-        }
-        $compra->fecha_compra = $tiempo;
-        $compra->save();
+
+        $compra = Compra::create($request->all());
+        
         return $compra;
     }
 
@@ -93,21 +93,13 @@ class CompraController extends Controller
      */
     public function update(Request $request, Compra $compra)
     {
-        $validator = Validator::make($request->all(), $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        $compra = new \App\Compra;
-        $compra->reserva_id = $request->get('reserva_id');
-        $compra->user_id = $request->get('user_id');
-        try{
-            $tiempo = Carbon::createFromFormat('d/m/Y H:i:s', $request->get('fecha_compra'));
-        }
-        catch(\Exception $e){
-            return json_encode(['outcome' => 'error']);
-        }
-        $compra->fecha_compra = $tiempo;
-        $compra->save();
+
+        $compra->update($request->all());
+        
         return $compra;
     }
 

@@ -18,6 +18,11 @@ class queryLog extends Model
     	'fecha_consulta'
     ];
 
+    public function getDateFormat()
+    {
+        return 'Y-m-d H:i:s';
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }
