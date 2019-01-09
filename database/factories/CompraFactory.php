@@ -7,6 +7,7 @@ $factory->define(App\Compra::class, function (Faker $faker) {
 	$users = DB::table('users')->select('id')->get();  
     return [
         'reserva_id' => $reservas->random()->id,
-        'user_id'=> $users->random()->id
+        'user_id'=> $users->random()->id,
+        'medio_pago'=>$faker->numberBetween($min = 0,$max = 3)
     ];
 });

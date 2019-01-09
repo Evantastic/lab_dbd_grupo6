@@ -13,7 +13,8 @@ class CompraController extends Controller
         return [
             'reserva_id' => 'required|numeric|exists:reservas,id',
             'user_id' => 'required|numeric|exists:users,id',
-            'fecha_compra' => 'required|string'
+            'fecha_compra' => 'required|string',
+            'medio_pago' =>'required|integer|between:0,3'
         ];
     }
 
@@ -21,7 +22,8 @@ class CompraController extends Controller
         return [
             'reserva_id' => 'nullable|numeric|exists:reservas,id',
             'user_id' => 'nullable|numeric|exists:users,id',
-            'fecha_compra' => 'nullable|string'
+            'fecha_compra' => 'nullable|string',
+            'medio_pago' =>'nullable|integer|between:0,3'
         ];
     }
     /**

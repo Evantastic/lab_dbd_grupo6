@@ -14,6 +14,12 @@ class RecorridoVueloController extends Controller
         'vuelo_id'=> 'required|numeric|exists:vuelos,id'
         ];
     }
+        public function rulesPut(){
+        return  [
+        'recorrido_id'=> 'nullable|numeric|exists:recorridos,id',
+        'vuelo_id'=> 'nullable|numeric|exists:vuelos,id'
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,9 +54,7 @@ class RecorridoVueloController extends Controller
             return $validator->messages(); 
         }
         
-        $Recorrido_Vuelo = new \App\Recorrido_Vuelo;
-        $Recorrido_Vuelo->recorrido_id = $request->get('recorrido_id');
-        $Recorrido_Vuelo->vuelo_id = $request->get('vuelo_id');
+        $Recorrido_Vuelo = Recorrido_Vuelo::create($request->all());
         
         $Recorrido_Vuelo->save();
         return $Recorrido_Vuelo;
@@ -88,16 +92,13 @@ class RecorridoVueloController extends Controller
      */
     public function update(Request $request, Recorrido_Vuelo $recorrido_Vuelo)
     {
-        $validator = Validator::make($request->all(),$this->rules());
+        $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
             return $validator->messages(); 
         }
         
         
-        $recorrido_Vuelo->recorrido_id = $request->get('recorrido_id');
-        $recorrido_Vuelo->vuelo_id = $request->get('vuelo_id');
-        
-        $recorrido_Vuelo->save();
+        $recorrido_Vuelo->update($request->all());
         return $recorrido_Vuelo; //
     }
 

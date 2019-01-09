@@ -19,6 +19,17 @@ class VehiculoController extends Controller
             'capacidad' => 'required|numeric|between:1,5'
         ];
     }
+        public function rulesPut(){
+        return [
+            'automotora_id' => 'nullable|numeric|exists:automotoras,id',
+            'marca' => 'nullable|string|max:32',
+            'modelo' => 'nullable|string|max:32',
+            'tipo' => 'nullable|string|max:32',
+            'patente' => 'nullable|alpha_num|max:16',
+            'precio' => 'nullable|numeric',
+            'capacidad' => 'nullable|numeric|between:1,5'
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -51,15 +62,8 @@ class VehiculoController extends Controller
         if($validator->fails()){
             return $validator->messages();
         }
-        $vehiculo = new \App\Vehiculo;
-        $vehiculo->automotora_id = $request->get('automotora_id');
-        $vehiculo->marca         = $request->get('marca');
-        $vehiculo->modelo        = $request->get('modelo');
-        $vehiculo->tipo          = $request->get('tipo');
-        $vehiculo->patente       = $request->get('patente');
-        $vehiculo->precio        = $request->get('precio');
-        $vehiculo->capacidad     = $request->get('capacidad');
-        $vehiculo->save();
+        $vehiculo = Vehiculo::create($request->all());
+
         return $vehiculo;
     }
 
@@ -94,18 +98,11 @@ class VehiculoController extends Controller
      */
     public function update(Request $request, Vehiculo $vehiculo)
     {
-        $validator = Validator::make($request->all(),$this->rules());
+        $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        $vehiculo->automotora_id = $request->get('automotora_id');
-        $vehiculo->marca         = $request->get('marca');
-        $vehiculo->modelo        = $request->get('modelo');
-        $vehiculo->tipo          = $request->get('tipo');
-        $vehiculo->patente       = $request->get('patente');
-        $vehiculo->precio        = $request->get('precio');
-        $vehiculo->capacidad     = $request->get('capacidad');
-        $vehiculo->save();
+        $vehiculo->update($request->all());
         return $vehiculo;
     }
 

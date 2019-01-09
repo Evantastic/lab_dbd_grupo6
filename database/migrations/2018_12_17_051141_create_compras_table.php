@@ -19,6 +19,7 @@ class CreateComprasTable extends Migration
             $table->foreign('reserva_id')->references('id')->on('reservas');
             $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('medio_pago');//0 tarjeta de credito // 1 tarjeta de debito // 2 efectivo // 3 cheque
             $table->datetime('fecha_compra');
             $table->boolean('es_valido')->default=true;
             $table->timestamps();

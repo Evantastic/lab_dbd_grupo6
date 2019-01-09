@@ -137,9 +137,9 @@ class UserController extends Controller
      */
     public function destroy(User $id)
     {
-                if($user->es_valido){
-            $user->es_valido = false;
-            $user->save();
+                if($id->es_valido){
+            $id->es_valido = false;
+            $id->save();
             return json_encode(['outcome' => 'success']);
         }
         return json_encode(['outcome' => 'error']);

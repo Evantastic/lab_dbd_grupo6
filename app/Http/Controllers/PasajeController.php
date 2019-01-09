@@ -18,6 +18,17 @@ class PasajeController extends Controller
         'vuelo_id'=>'required|numeric|exists:vuelos,id'
         ];
     }
+        public function rules(){
+        return  [
+        'fila'=>'nullable|alpha',
+        'columna'=>'nullable|numeric|max:100',
+        'pasaje_simple'=>'nullable|boolean',
+        'asiento_bussiness'=>'nullable|boolean',
+        'asiento_discapacidad'=>'nullable|boolean',
+        'reserva_id'=>'nullable|numeric|exists:reservas,id',
+        'vuelo_id'=>'nullable|numeric|exists:vuelos,id'
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -51,15 +62,8 @@ class PasajeController extends Controller
             return $validator->messages(); 
         }
         
-        $pasaje = new \App\Pasaje;
-        $pasaje->fila = $request->get('fila');
-        $pasaje->columna = $request->get('columna');
-        $pasaje->pasaje_simple = $request->get('pasaje_simple');
-        $pasaje->asiento_bussiness= $request->get('asiento_bussiness');
-        $pasaje->asiento_discapacidad= $request->get('asiento_discapacidad');
-        $pasaje->reserva_id= $request->get('reserva_id');
-        $pasaje->vuelo_id= $request->get('vuelo_id');
-        $pasaje->save();
+        $pasaje = Pasaje::create($request->all());
+
         return $pasaje;//
     }
 
@@ -94,20 +98,14 @@ class PasajeController extends Controller
      */
     public function update(Request $request, Pasaje $pasaje)
     {
-               $validator = Validator::make($request->all(),$this->rules());
+               $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
             return $validator->messages(); 
         }
         
         
-        $pasaje->fila = $request->get('fila');
-        $pasaje->columna = $request->get('columna');
-        $pasaje->pasaje_simple = $request->get('pasaje_simple');
-        $pasaje->asiento_bussiness= $request->get('asiento_bussiness');
-        $pasaje->asiento_discapacidad= $request->get('asiento_discapacidad');
-        $pasaje->reserva_id= $request->get('reserva_id');
-        $pasaje->vuelo_id= $request->get('vuelo_id');
-        $pasaje->save();
+        $pasaje->update($request->all());
+
         return $pasaje;// //
     }
 

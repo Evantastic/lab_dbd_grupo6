@@ -14,6 +14,12 @@ class ViajeController extends Controller
             'ciudad_destino_id' => 'required|numeric|exists:ciudades,id|different:ciudad_origen_id',
         ];
     }
+    public function rules(){
+        return [
+            'ciudad_origen_id' => 'nullable|numeric|exists:ciudades,id',
+            'ciudad_destino_id' => 'nullable|numeric|exists:ciudades,id|different:ciudad_origen_id',
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,10 +52,7 @@ class ViajeController extends Controller
         if($validator->fails()){
             return $validator->messages();
         }
-        $viaje = new \App\Viaje;
-        $viaje->ciudad_origen_id = $request->get('ciudad_origen_id');
-        $viaje->ciudad_destino_id = $request->get('ciudad_destino_id');
-        $viaje->save();
+        $viaje = Viaje::create($request->all());
         return $viaje;
     }
 
@@ -84,13 +87,11 @@ class ViajeController extends Controller
      */
     public function update(Request $request, Viaje $viaje)
     {
-        $validator = Validator::make($request->all(), $this->rules());
+        $validator = Validator::make($request->all(), $this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        $viaje->ciudad_origen_id = $request->get('ciudad_origen_id');
-        $viaje->ciudad_destino_id = $request->get('ciudad_destino_id');
-        $viaje->save();
+        $viaje->update($request->all());
         return $viaje;
     }
 

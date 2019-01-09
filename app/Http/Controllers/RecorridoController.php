@@ -17,6 +17,15 @@ class RecorridoController extends Controller
 
         ];
     }
+        public function rulesPut(){
+
+        return[
+
+        'costo_economico'=>'nullable|numeric|min:0',
+        'costo_bussiness'=>'nullable|numeric|min:0'
+
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -87,14 +96,12 @@ class RecorridoController extends Controller
      */
     public function update(Request $request, Recorrido $recorrido)
     {
-       $validator = Validator::make($request->all(),$this->rules());
+       $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        
-        $recorrido->costo_economico = $request->get('costo_economico');
-        $recorrido->costo_bussiness = $request->get('costo_bussiness');
-        $recorrido->save();
+        $recorrido->update($request->all());
+
         return $recorrido; //
     }
 

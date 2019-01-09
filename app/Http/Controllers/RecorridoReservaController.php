@@ -16,6 +16,14 @@ class RecorridoReservaController extends Controller
             'costo_bussiness' => 'required|numeric'
         ];
     }
+    public function rulePut(){
+        return [
+            'recorrido_id'    => 'nullable|numeric|exists:recorridos,id',
+            'reserva_id'      => 'nullable|numeric|exists:reservas,id',
+            'costo_economico' => 'nullable|numeric',
+            'costo_bussiness' => 'nullable|numeric'
+        ];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,12 +56,8 @@ class RecorridoReservaController extends Controller
         if($validator->fails()){
             return $validator->messages();
         }
-        $recorrido_reserva = new \App\Recorrido_Reserva;
-        $recorrido_reserva->recorrido_id    = $request->get('recorrido_id');
-        $recorrido_reserva->reserva_id      = $request->get('reserva_id');
-        $recorrido_reserva->costo_economico = $request->get('costo_economico');
-        $recorrido_reserva->costo_bussiness = $request->get('costo_bussiness');
-        $recorrido_reserva->save();
+        $recorrido_reserva = Recorrido_Reserva::create($request->all());
+        
         return $recorrido_reserva;
     }
 
@@ -88,15 +92,11 @@ class RecorridoReservaController extends Controller
      */
     public function update(Request $request, recorrido_reserva $recorrido_reserva)
     {
-        $validator = Validator::make($request->all(),$this->rules());
+        $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
             return $validator->messages();
         }
-        $recorrido_reserva->recorrido_id    = $request->get('recorrido_id');
-        $recorrido_reserva->reserva_id      = $request->get('reserva_id');
-        $recorrido_reserva->costo_economico = $request->get('costo_economico');
-        $recorrido_reserva->costo_bussiness = $request->get('costo_bussiness');
-        $recorrido_reserva->save();
+        $recorrido_reserva->update($request->all())
         return $recorrido_reserva;
     }
 

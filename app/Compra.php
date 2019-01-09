@@ -12,7 +12,8 @@ class Compra extends Model
 
     protected $fillable = [
         'reserva_id',
-        'user_id'
+        'user_id',
+        'medio_pago'
     ];
 
     protected $dates = [
