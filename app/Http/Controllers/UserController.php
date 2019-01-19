@@ -66,15 +66,7 @@ class UserController extends Controller
             return $validator->messages(); 
         }
         
-        $user = new \App\User;
-        $user->name = $request->get('name');
-        $user->apellido = $request->get('apellido');
-        $user->nacionalidad = $request->get('nacionalidad');
-        $user->edad= $request->get('edad');
-        $user->tipoUsuario= $request->get('tipoUsuario');
-        $user->email= $request->get('email');
-        $user->password= $request->get('password');
-        $user->save();
+        $user = User::create($request->all());
         return $user;
     }
  //
@@ -127,17 +119,8 @@ class UserController extends Controller
         if($validator->fails()){
             return $validator->messages(); 
         }
-        
-        
-        $user->name = $request->get('name');
-        $user->apellido = $request->get('apellido');
-        $user->nacionalidad = $request->get('nacionalidad');
-        $user->edad=$request->get('edad');
-        $user->tipoUsuario= $request->get('tipoUsuario');
-        $user->email= $request->get('email');
-        $user->password= $request->get('password');
-        $user->save();
-        return $user;//Aca va lo normal
+        $user->update($request->all());
+        return $user;
         
         
     }
@@ -148,11 +131,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $id)
+    public function destroy($id)
     {
-                if($id->es_valido){
-            $id->es_valido = false;
-            $id->save();
+        try{
+            $user = \App\User::findOrFail($id);
+        }
+        catch(\Exception $e){
+            return json_encode(['outcome' => 'error']);
+        }
+        if($user->es_valido){
+            $user->es_valido = false;
+            $user->save();
             return json_encode(['outcome' => 'success']);
         }
         return json_encode(['outcome' => 'error']);

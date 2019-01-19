@@ -14,7 +14,7 @@ class ViajeController extends Controller
             'ciudad_destino_id' => 'required|numeric|exists:ciudades,id|different:ciudad_origen_id',
         ];
     }
-    public function rules(){
+    public function rulesPut(){
         return [
             'ciudad_origen_id' => 'nullable|numeric|exists:ciudades,id',
             'ciudad_destino_id' => 'nullable|numeric|exists:ciudades,id|different:ciudad_origen_id',
@@ -27,7 +27,8 @@ class ViajeController extends Controller
      */
     public function index()
     {
-        return Viaje::all(); 
+        $viajes = Viaje::with('ciudad_origen','ciudad_destino')->get();
+        return view('welcome')->withViajes($viajes);
     }
 
     /**

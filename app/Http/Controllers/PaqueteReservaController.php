@@ -17,7 +17,7 @@ class PaqueteReservaController extends Controller
 
         ];
     }
-        public function rules(){
+        public function rulesPut(){
         return  [
 
         'paquete_id' => 'nullable|numeric|exists:paquetes,id',
