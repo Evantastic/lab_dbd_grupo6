@@ -15,6 +15,8 @@ class CreateRecorridosTable extends Migration
     {
         Schema::create('recorridos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('viaje_id');
+            $table->foreign('viaje_id')->references('id')->on('viajes');
             $table->unsignedInteger('costo_economico');
             $table->unsignedInteger('costo_bussiness');
             $table->boolean('es_valido')->default=true;

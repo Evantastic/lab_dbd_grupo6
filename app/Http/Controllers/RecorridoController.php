@@ -11,9 +11,9 @@ class RecorridoController extends Controller
     public function rules(){
 
         return[
-
         'costo_economico'=>'required|numeric|min:0',
-        'costo_bussiness'=>'required|numeric|min:0'
+        'costo_bussiness'=>'required|numeric|min:0',
+            'viaje_id' => 'required|numeric|exists:viajes,id'
 
         ];
     }
@@ -22,7 +22,8 @@ class RecorridoController extends Controller
         return[
 
         'costo_economico'=>'nullable|numeric|min:0',
-        'costo_bussiness'=>'nullable|numeric|min:0'
+        'costo_bussiness'=>'nullable|numeric|min:0',
+            'viaje_id' => 'nullable|numeric|exists:viajes,id'
 
         ];
     }

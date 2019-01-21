@@ -20,4 +20,8 @@ class Viaje extends Model
     public function ciudad_destino(){
         return $this->belongsTo(Ciudad::class,'ciudad_destino_id');
     }
+
+    public function recorridos(){
+        return $this->hasMany(Recorrido::class);
+    }
 }

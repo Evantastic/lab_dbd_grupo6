@@ -13,6 +13,8 @@
 
 
 Route::get('/', 'ViajeController@index');
+Route::get('/buscar', 'ViajeController@buscarOrigenDestino');
+Route::get('/viajes/{viaje}','ViajeController@show')->name('viaje');
 
 Auth::routes();
 
