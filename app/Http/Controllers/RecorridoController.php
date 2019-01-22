@@ -75,10 +75,9 @@ class RecorridoController extends Controller
     public function show(Recorrido $recorrido)
     {
         $vuelos = $recorrido->recorrido_vuelos()->get();
-        $vuelo = $vuelos->first();
-        $vuelo->vuelo()->first()->aeropuerto_origen()->first()->ciudad()->first()->nombre;
         $viaje = $recorrido->viaje()->first();
-        return view('recorrido')->withVuelos($vuelos)->withRecorrido($recorrido)->withViaje($viaje);
+        $cantidad = 0;
+        return view('recorrido')->withVuelos($vuelos)->withRecorrido($recorrido)->withViaje($viaje)->withCantidad($cantidad);
     }
 
     /**
