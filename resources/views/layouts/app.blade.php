@@ -56,6 +56,20 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <!-- /.container -->
     </div>
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <script src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>  <!-- Esto es referencia a /public/js/jquery-3.3.1.slim.min.js -->
+    <script src="{{asset('js/popper.min.js')}}"></script> <!-- Esto es referencia a /public/js/js/popper.min.js -->
+    <script src="{{asset('js/bootstrap.min.js')}}"></script> <!-- Esto es referencia a /public/js/bootstrap.min.js -->
 </body>
 </html>

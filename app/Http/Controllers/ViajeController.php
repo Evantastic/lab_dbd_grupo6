@@ -66,7 +66,9 @@ class ViajeController extends Controller
      */
     public function show(Viaje $viaje)
     {
-        return $viaje->recorridos()->get();
+      return view('viaje')
+      ->withRecorridos($viaje->recorridos()->get())
+      ->withViaje($viaje);
     }
 
     /**
