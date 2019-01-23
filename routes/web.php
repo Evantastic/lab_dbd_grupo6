@@ -15,6 +15,9 @@
 Route::get('/', 'ViajeController@index');
 Route::get('/buscar', 'ViajeController@buscarOrigenDestino');
 Route::get('/viajes/{viaje}','ViajeController@show')->name('viaje');
+Route::get('/comprar/{recorrido}','RecorridoController@comprar');
+Route::get('/comprar/{recorrido}/boleta','RecorridoController@boleta');
+Route::get('/comprar/{recorrido}/confirmar/{user}/{reserva}','CompraController@confirmar');
 
 Auth::routes();
 

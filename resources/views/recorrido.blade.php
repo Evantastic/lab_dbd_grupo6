@@ -8,14 +8,7 @@
                 <div class="container">
                     <h1 class="display-4">Disfruta de este recorrido ¡Te lo mereces!</h1>
                     <p class="lead">Ahorra en tu compra con Atam</p>
-                    <form method="get" action="/comprar/{{$recorrido->id}}">
-                        <div class="form-group">
-                            <label for="inputCantidad">Cantidad</label>
-                            <input type="number" class="form-control" id="inputCantidad" aria-describedby="cantidadHelp" placeholder="Ingresa la cantidad de pasajes que quieres">
-                        </div>
-                        <a href="http://192.168.10.10/comprar/{{$recorrido->id}}/" class="btn btn-primary">Comprar Economico</a>
-                        <a href="http://192.168.10.10/comprar/{{$recorrido->id}}/" class="btn btn-primary">Comprar Bussiness</a>
-                    </form>
+                        <a href="http://192.168.10.10/comprar/{{$recorrido->id}}/" class="btn btn-primary">Comprar</a>
                 </div>
             </div>
 
@@ -35,7 +28,7 @@
                     </p>
                 </div>
             </div>
-
+            <br/>
             <div class="page-header">
                 <h1>Lista de vuelos</h1>
             </div><br/>
