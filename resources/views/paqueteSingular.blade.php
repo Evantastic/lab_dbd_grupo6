@@ -1,0 +1,15 @@
+@extends('layouts.app')
+@section('content')
+  <p>
+    {{$paquete}}
+  </p><br/>
+  <p>
+    {{$hotel}}
+  </p><br/>
+  <p>
+    {{$auto}}
+  </p><br/>
+  <p>
+    {{$recorrido}}
+  </p><br/>
+@endsection
