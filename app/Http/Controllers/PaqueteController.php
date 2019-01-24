@@ -39,9 +39,10 @@ class PaqueteController extends Controller
      */
     public function index()
     {
-        return Paquete::all();
+        $paquetes = Paquete::all();
+        return view('paquete')->withPaquetes($paquetes);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -66,7 +67,7 @@ class PaqueteController extends Controller
         }
 
         $paquete = Paquete::create($request->all());
-        
+
         return $paquete;
     }
 
@@ -78,7 +79,10 @@ class PaqueteController extends Controller
      */
     public function show(Paquete $paquete)
     {
-        return $paquete;
+      $vehiculo = $paquete->vehiculo()->first();
+      $hotel = $paquete->habitacion()->first()->hotel()->first();
+      $recorrido = $paquete->recorrido()->first();
+      return view('paqueteSingular')->withPaquete($paquete)->withHotel($hotel)->withAuto($vehiculo)->withRecorrido($recorrido);
     }
 
     /**
@@ -107,7 +111,7 @@ class PaqueteController extends Controller
         }
 
         $paquete->update($request->all());
-        
+
         return $paquete;
     }
 
