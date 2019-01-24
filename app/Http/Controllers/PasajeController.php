@@ -18,7 +18,7 @@ class PasajeController extends Controller
         'vuelo_id'=>'required|numeric|exists:vuelos,id'
         ];
     }
-        public function rules(){
+        public function rulesPut(){
         return  [
         'fila'=>'nullable|alpha',
         'columna'=>'nullable|numeric|max:100',

@@ -96,7 +96,7 @@ class RecorridoReservaController extends Controller
         if($validator->fails()){
             return $validator->messages();
         }
-        $recorrido_reserva->update($request->all())
+        $recorrido_reserva->update($request->all());
         return $recorrido_reserva;
     }
 

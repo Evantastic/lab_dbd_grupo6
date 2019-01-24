@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Validator;
 use App\Viaje;
 use Illuminate\Http\Request;
+use DB;
 
 class ViajeController extends Controller
 {
@@ -14,7 +15,7 @@ class ViajeController extends Controller
             'ciudad_destino_id' => 'required|numeric|exists:ciudades,id|different:ciudad_origen_id',
         ];
     }
-    public function rules(){
+    public function rulesPut(){
         return [
             'ciudad_origen_id' => 'nullable|numeric|exists:ciudades,id',
             'ciudad_destino_id' => 'nullable|numeric|exists:ciudades,id|different:ciudad_origen_id',
@@ -27,7 +28,8 @@ class ViajeController extends Controller
      */
     public function index()
     {
-        return Viaje::all(); 
+        $viajes = Viaje::with('ciudad_origen','ciudad_destino')->get();
+        return view('welcome')->withViajes($viajes);
     }
 
     /**
@@ -64,7 +66,9 @@ class ViajeController extends Controller
      */
     public function show(Viaje $viaje)
     {
-        return $viaje;
+      return view('viaje')
+      ->withRecorridos($viaje->recorridos()->get())
+      ->withViaje($viaje);
     }
 
     /**
@@ -109,5 +113,19 @@ class ViajeController extends Controller
             return json_encode(['outcome' => 'success']);
         }
         return json_encode(['outcome' => 'error']);
+    }
+
+    public function buscarOrigenDestino(Request $request){
+        $origen = $request->origen;
+        $destino = $request->destino;
+        if($origen != "" && $destino != "" ){
+            $ciudad1 = DB::table('ciudades')->where('nombre',$origen)->first();
+            $ciudad2 = DB::table('ciudades')->where('nombre',$destino)->first();
+            $resultado = DB::table('viajes')->where('ciudad_origen_id',$ciudad1->id)->where('ciudad_destino_id',$ciudad2->id)->first();
+            return redirect()->route('viaje',[$resultado->id]);
+        }
+        else{
+            return view('buscar')->withOrigen("")->withDestino("");
+        }
     }
 }
