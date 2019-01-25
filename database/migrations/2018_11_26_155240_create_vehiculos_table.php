@@ -17,8 +17,8 @@ class CreateVehiculosTable extends Migration
             $table->increments('id');
             $table->integer('automotora_id');
             $table->foreign('automotora_id')->references('id')->on('automotoras');
-            $table->string('marca',32);
-            $table->string('modelo',32);
+            $table->string('marca',120);
+            $table->string('modelo',120);
             $table->string('tipo',32);
             $table->string('patente',16);
             $table->unsignedInteger('precio');
