@@ -48,12 +48,35 @@
             </div>
         </div>
 
-        <div class='input-group date row' id='datetimepicker1'>
-          <input type='text' class="form-control" />
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-          </div>
+        <div class="form-group">
+          <script type="text/javascript">
+              $(function () {
+                  $('#datetimepicker1').datetimepicker();
+              });
+          </script>
+            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+              <label for="tiempo_salida" class="col-2 col-form-label">Tiempo Salida</label>
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" id="tiempo_salida" name="tiempo_salida"/>
+                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <script type="text/javascript">
+              $(function () {
+                  $('#datetimepicker2').datetimepicker();
+              });
+          </script>
+            <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+              <label for="tiempo_llegada" class="col-2 col-form-label">Tiempo Llegada</label>
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" id="tiempo_llegada" name="tiempo_llegada"/>
+                <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+        </div>
 
         <div class="form-group row">
             <label for="patente" class="col-2 col-form-label">Patente</label>
