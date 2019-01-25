@@ -90,7 +90,7 @@
         <br/><br/>
         <div class="card">
             <div class="card-header">
-                Vehiculo
+                Información
             </div>
             <div class="card-body">
                 <h5 class="card-title">Vehiculo</h5>
@@ -108,10 +108,10 @@
         <br/><br/>
         <div class="card">
             <div class="card-header">
-                Habitación
+                Información
             </div>
             <div class="card-body">
-                <h5 class="card-title">Vehiculo</h5>
+                <h5 class="card-title">Habitación</h5>
                 <p class="card-text">
                   Hotel: {{$habitacion->hotel()->first()->nombre}} <br/>
                   Número de habitación: {{$habitacion->numero_habitacion}} <br/>
