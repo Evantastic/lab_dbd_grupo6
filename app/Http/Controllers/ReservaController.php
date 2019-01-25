@@ -10,7 +10,7 @@ class ReservaController extends Controller
     public function rules(){
         return  [
 
-        'costo'=>'required|numeric|max:10000000',
+        'costo'=>'required|numeric',
         'seguro'=>'required|boolean',
 
         ];
@@ -18,7 +18,7 @@ class ReservaController extends Controller
     public function rulesPut(){
         return  [
 
-        'costo'=>'nullable|numeric|max:10000000',
+        'costo'=>'nullable|numeric',
         'seguro'=>'nullable|boolean',
 
         ];
