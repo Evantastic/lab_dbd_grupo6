@@ -16,9 +16,13 @@
           <img class="card-img-top img-fluid" src="http://silverinfra.com/wp-content/uploads/2015/01/hotel.jpg" alt="">
           <div class="card-body">
             <h3 class="card-title">Paquete para {{$paquete->cantidad_personas}} personas </h3>
-            <p>
-              Aprovecha este paquete con <b>{{$paquete->descuento}}% de Descuento</b>
+            <br>
+
+            Aprovecha este paquete con <b>{{$paquete->descuento}}% de Descuento</b></br></br>
+            <a href="/comprar/paquete"><button   type="submit" class="btn btn-primary">Comprar</button></a>
+
             </p>
+
           </div>
         </div>
         <!-- /.card -->
