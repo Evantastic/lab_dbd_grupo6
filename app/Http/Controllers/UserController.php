@@ -19,7 +19,7 @@ class UserController extends Controller
 
 
         ];
-    }   
+    }
         public function rulesPut(){
         return[
         'name'=>'nullable|string|max:128',
@@ -32,7 +32,7 @@ class UserController extends Controller
 
 
         ];
-    }  
+    }
     /**
      * Display a listing of the resource.
      *
@@ -63,14 +63,14 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(),$this->rules());
         if($validator->fails()){
-            return $validator->messages(); 
+            return $validator->messages();
         }
-        
+
         $user = User::create($request->all());
         return $user;
     }
  //
-    
+
 
     /**
      * Display the specified resource.
@@ -99,7 +99,7 @@ class UserController extends Controller
     {
         //
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -115,14 +115,14 @@ class UserController extends Controller
         catch(\Exception $e){
             return json_encode(['outcome' => 'error']);
         }
-        $validator = Validator::make($request->all(),$this->rulePut());
+        $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
-            return $validator->messages(); 
+            return $validator->messages();
         }
         $user->update($request->all());
         return $user;
-        
-        
+
+
     }
 
     /**
@@ -146,5 +146,5 @@ class UserController extends Controller
         }
         return json_encode(['outcome' => 'error']);
     }//
-    
+
 }

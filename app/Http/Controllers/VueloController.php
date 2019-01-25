@@ -53,7 +53,7 @@ class VueloController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminVuelo');
     }
 
     /**
@@ -65,13 +65,13 @@ class VueloController extends Controller
     public function store(Request $request)
    {
         $validator = Validator::make($request->all(), $this->rulesPost());
-        
+
         if($validator->fails()){
             return $validator->messages();
         }
-        
+
         $vuelo = Vuelo::create($request->all());
-        
+
         return $vuelo;
     }
 

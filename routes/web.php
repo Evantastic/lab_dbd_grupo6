@@ -44,8 +44,10 @@ Route::resource('/reserva_vehiculo','ReservaVehiculoController');
 Route::resource('/recorrido_vuelo','RecorridoVueloController');
 
 Route::group(['middleware' => ['auth','admin']], function(){
-
 	Route::get('/admin', function(){
 		return view('admin');
 	});
+	Route::get('/admin/vuelo','VueloController@create');
+	Route::get('/admin/recorrido','RecorridoController@create');
+	Route::get('/admin/viaje','ViajeController@create');
 });
