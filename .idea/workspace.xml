@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="149b81e9-638f-4139-86c2-7261032d0a22" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/paquete.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/paquete.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/paqueteSingular.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/paqueteSingular.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/adminRecorrido.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +33,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/paqueteSingular.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="314">
@@ -46,6 +45,11 @@
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/adminRecorrido.blade.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -255,12 +259,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1548361850056</updated>
-      <workItem from="1548361857688" duration="6569000" />
+      <workItem from="1548361857688" duration="7222000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6569000" />
+    <option name="totallyTimeSpent" value="7222000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="20" width="1346" height="688" extended-state="0" />
@@ -329,6 +333,9 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/adminRecorrido.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
