@@ -16,7 +16,7 @@
               <h4 class="card-title">
                 <a href="/paquete/{{$paquete->id}}">Paquete para {{$paquete->cantidad_personas}}</a>
               </h4>
-              <p class="card-text">Aprovecha esta promoción y obten un %{{$paquete->descuento}} de descuento</p>
+              <p class="card-text">Aprovecha esta promoción y obten un {{$paquete->descuento}}% de descuento</p>
             </div>
           </div>
         </div>
