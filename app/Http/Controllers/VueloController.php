@@ -65,10 +65,13 @@ class VueloController extends Controller
     public function store(Request $request)
    {
         $validator = Validator::make($request->all(), $this->rulesPost());
-
         if($validator->fails()){
             return $validator->messages();
         }
+        //$request->tiempo_salida = Carbon::createFromFormat('m-d-Y h:i A', $request->tiempo_salida);
+        //$request->tiempo_origen = Carbon::createFromFormat('m-d-Y h:i A', $request->tiempo_origen);
+        //$request->tiempo_salida = $request->tiempo_salida->format('d-m-Y h:i:s');
+        //$request->tiempo_origen = $request->tiempo_origen->format('d-m-Y h:i:s');
 
         $vuelo = Vuelo::create($request->all());
 
