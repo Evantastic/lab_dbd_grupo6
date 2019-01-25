@@ -17,7 +17,7 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'apellido'=> $faker->lastName,
-        'nacionalidad'=> $faker->text($nbMaxChars = 32),
+        'nacionalidad'=> $faker->country,
         'edad'=>rand(0,100),
         'tipoUsuario'=>rand(0,2),
         'email' => $faker->unique()->safeEmail,

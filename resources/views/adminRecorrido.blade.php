@@ -29,6 +29,9 @@
                 <br/>
 
                 <button type="submit" class="btn btn-primary">Publicar</button>
+                <a href="http://192.168.10.10/admin">
+                    <button type="button" class="btn btn-primary">Volver</button>
+                </a>
             </form>
         </div>
     </div>
