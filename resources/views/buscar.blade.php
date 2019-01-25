@@ -3,6 +3,14 @@
 @section('content')
     <div class="container">
         <div class="center-block">
+            <br/>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Disfruta de nuestros viajes</h1>
+                    <p class="lead">¡Dinos de donde vienes y hacia donde vas!</p>
+                </div>
+            </div>
+
             <form>
                 <div class="form-group">
                     <label for="origen">Ciudad de origen</label>

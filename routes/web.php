@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +15,12 @@
 Route::get('/', 'ViajeController@index');
 Route::get('/buscar', 'ViajeController@buscarOrigenDestino');
 Route::get('/viajes/{viaje}','ViajeController@show')->name('viaje');
+Route::get('/comprar/{recorrido}','RecorridoController@comprar');
+Route::get('/comprar/{recorrido}/boleta','RecorridoController@boleta');
+Route::get('/comprar/{recorrido}/confirmar/{user}/{reserva}','CompraController@confirmar');
+Route::get('/comprar/paquete/{paquete}','PaqueteController@compra');
+Route::get('/comprar/paquete/{paquete}/boleta','PaqueteController@boleta');
+Route::get('/comprar/paquete/{paquete}/{user}/{reserva}/{vehiculo}/{habitacion}/{recorrido}','PaqueteController@confirmar');
 
 Auth::routes();
 
@@ -39,3 +45,12 @@ Route::resource('/habitacion_reserva','HabitacionReservaController');
 Route::resource('/paquete_reserva','PaqueteReservaController');
 Route::resource('/reserva_vehiculo','ReservaVehiculoController');
 Route::resource('/recorrido_vuelo','RecorridoVueloController');
+
+Route::group(['middleware' => ['auth','admin']], function(){
+	Route::get('/admin', function(){
+		return view('admin');
+	});
+	Route::get('/admin/vuelo','VueloController@create');
+	Route::get('/admin/recorrido','RecorridoController@create');
+	Route::get('/admin/viaje','ViajeController@create');
+});

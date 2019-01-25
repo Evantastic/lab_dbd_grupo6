@@ -9,9 +9,7 @@
 
             <h1 class="my-4">Atam Airlines</h1>
             <div class="list-group">
-                <a href="#" class="list-group-item">Category 1</a>
-                <a href="#" class="list-group-item">Category 2</a>
-                <a href="#" class="list-group-item">Category 3</a>
+                <a href="http://192.168.10.10/paquete/" class="list-group-item">Paquetes</a>
             </div>
 
         </div>
@@ -40,7 +38,7 @@
                             <p class="card-text">Desde {{ $viaje->ciudad_origen()->first()->nombre_pais}}</p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                
                         </div>
                     </div>
                 </div>

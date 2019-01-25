@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Compra;
+use \App\Compra;
+use \App\Recorrido;
+use \App\User;
+use \App\Reserva;
 use Illuminate\Http\Request;
 use Validator;
 use Carbon\Carbon;
@@ -13,8 +16,7 @@ class CompraController extends Controller
         return [
             'reserva_id' => 'required|numeric|exists:reservas,id',
             'user_id' => 'required|numeric|exists:users,id',
-            'fecha_compra' => 'required|string',
-            'medio_pago' =>'required|integer|between:0,3'
+            'medio_pago' =>'required|integer|between:1,3'
         ];
     }
 
@@ -22,8 +24,7 @@ class CompraController extends Controller
         return [
             'reserva_id' => 'nullable|numeric|exists:reservas,id',
             'user_id' => 'nullable|numeric|exists:users,id',
-            'fecha_compra' => 'nullable|string',
-            'medio_pago' =>'nullable|integer|between:0,3'
+            'medio_pago' =>'nullable|integer|between:1,3'
         ];
     }
     /**
@@ -119,5 +120,102 @@ class CompraController extends Controller
             return json_encode(['outcome' => 'success']);
         }
         return json_encode(['outcome' => 'error']);
+    }
+
+    private function ask(Recorrido $recorrido, Request $request){
+        $bussiness = $request->bussiness == "on";
+        $valido = true;
+        foreach ($recorrido->recorrido_vuelos()->get() as $vuelo){
+            $v = $vuelo->vuelo()->first();
+            $size = $bussiness ? $v->capacidad_bussiness : $v->capacidad_economica;
+            if($size - $request->cantidad < 0){
+                $valido = false;
+            }
+        }
+        return $valido;
+    }
+
+    private function confirm(Recorrido $recorrido, Request $request){
+        $bussiness = $request->bussiness == "on";
+        $controller = new VueloController();
+        foreach ($recorrido->recorrido_vuelos()->get() as $vuelo){
+            $v = $vuelo->vuelo()->first();
+            $size = $bussiness ? $v->capacidad_bussiness : $v->capacidad_economica;
+            $info = new \Illuminate\Http\Request();
+            $info->setMethod('PUT');
+            if($bussiness){
+                $info->request->add([
+                    'capacidad_bussiness' => $size - $request->cantidad
+                ]);
+            }
+            else{
+                $info->request->add([
+                    'capacidad_economica' => $size - $request->cantidad
+                ]);
+            }
+            $controller->update($info,$v);
+        }
+    }
+
+    private function crearPasajes(Recorrido $recorrido, Request $request, Reserva $reserva){
+        $pasajes = array();
+        $controller = new PasajeController();
+        foreach ($recorrido->recorrido_vuelos()->get() as $v){
+            $vuelo = $v->vuelo()->first();
+            for ($i = 1; $i <= $request->cantidad; $i++){
+                $info = new \Illuminate\Http\Request();
+                $info->setMethod('POST');
+                $info->request->add([
+                    'fila'=> 'X',
+                    'columna'=> 100,
+                    'pasaje_simple'=> true,
+                    'asiento_bussiness'=> $request->bussiness == "on",
+                    'asiento_discapacidad'=> false,
+                    'reserva_id'=> $reserva->id,
+                    'vuelo_id'=> $vuelo->id
+                ]);
+                $pasajes[] = $controller->store($info);
+            }
+        }
+        return $pasajes;
+    }
+
+    private function crearRR(Recorrido $recorrido, Reserva $reserva, Request $request){
+        $controller = new RecorridoReservaController();
+        $info = new \Illuminate\Http\Request();
+        $info->setMethod('POST');
+        $info->request->add([
+            'recorrido_id'    => $recorrido->id,
+            'reserva_id'      => $reserva->id,
+            'costo_economico' => $recorrido->costo_economico * $request->cantidad,
+            'costo_bussiness' => $recorrido->costo_bussiness * $request->cantidad
+        ]);
+        return $controller->store($info);
+    }
+
+    private function crearCompra(Reserva $reserva, User $user,Request $request){
+        $info = new \Illuminate\Http\Request();
+        $info->setMethod('POST');
+        $info->request->add([
+            'reserva_id' => $reserva->id,
+            'user_id' => $user->id,
+            'medio_pago' => $request->medio
+        ]);
+        return $this->store($info);
+    }
+
+    public function confirmar(Recorrido $recorrido, User $user, Reserva $reserva, Request $request){
+        $valido = $this->ask($recorrido,$request);
+        if($valido){
+            $this->confirm($recorrido,$request);
+            $pasajes = $this->crearPasajes($recorrido, $request, $reserva);
+            $this->crearRR($recorrido,$reserva,$request);
+            $compra = $this->crearCompra($reserva,$user,$request);
+            return view('compra')->withCompra($compra)->withRecorrido($recorrido)->withUser($user)->withPasajes($pasajes);
+            return $compra;
+        }
+        else{
+            return "no";
+        }
     }
 }

@@ -44,7 +44,7 @@ class RecorridoController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminRecorrido');
     }
 
     /**
@@ -55,14 +55,16 @@ class RecorridoController extends Controller
      */
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(),$this->rules());
+
         if($validator->fails()){
             return $validator->messages();
         }
-        $recorrido = new \App\Recorrido;
-        $recorrido->costo_economico = $request->get('costo_economico');
-        $recorrido->costo_bussiness = $request->get('costo_bussiness');
-        $recorrido->save();
+
+        $recorrido = Recorrido::create($request->all());
+
+
         return $recorrido;
     }
 
@@ -74,7 +76,10 @@ class RecorridoController extends Controller
      */
     public function show(Recorrido $recorrido)
     {
-        return $recorrido;
+        $vuelos = $recorrido->recorrido_vuelos()->get();
+        $viaje = $recorrido->viaje()->first();
+        $cantidad = 0;
+        return view('recorrido')->withVuelos($vuelos)->withRecorrido($recorrido)->withViaje($viaje)->withCantidad($cantidad);
     }
 
     /**
@@ -120,5 +125,52 @@ class RecorridoController extends Controller
             return json_encode(['outcome' => 'success']);
         }
         return json_encode(['outcome' => 'error']);
+    }
+
+    public function comprar(Recorrido $recorrido){
+        return view('economico')->withRecorrido($recorrido);
+    }
+
+    public function boleta(Recorrido $recorrido, Request $request){
+        try{
+            $user = \App\User::where('email',$request->email)->firstOrFail();
+        }
+        catch(\Exception $e){
+            $info = new \Illuminate\Http\Request();
+            $info->setMethod('POST');
+            $info->request->add([
+                'name'=> $request->nombre,
+                'apellido'=> $request->apellido,
+                'nacionalidad'=> $request->nacionalidad,
+                'edad'=> $request->edad,
+                'tipoUsuario'=> 0,
+                'email'=> $request->email,
+                'password'=> "asd123"
+            ]);
+            $creador = new UserController();
+            $user = $creador->store($info);
+        }
+        if($request->bussiness == "on"){
+            $costo = $request->cantidad * $recorrido->costo_bussiness;
+        }
+        else{
+            $costo = $request->cantidad * $recorrido->costo_economico;
+        }
+        $info = new \Illuminate\Http\Request();
+        $info->setMethod('POST');
+        $info->request->add([
+            'costo' => $costo,
+            'seguro' => $request->seguro == "on"
+        ]);
+        $creador = new ReservaController();
+        $reserva = $creador->store($info);
+        $vuelos = $recorrido->recorrido_vuelos()->get();
+        return view('boleta')
+            ->withRequest($request)
+            ->withRecorrido($recorrido)
+            ->withCosto($costo)
+            ->withVuelos($vuelos)
+            ->withUser($user)
+            ->withReserva($reserva);
     }
 }
