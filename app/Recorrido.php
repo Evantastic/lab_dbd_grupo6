@@ -11,6 +11,7 @@ class Recorrido extends Model
     protected $table = 'recorridos';
 
     protected $fillable = [
+        'viaje_id',
         'costo_economico',
         'costo_bussiness'
     ];

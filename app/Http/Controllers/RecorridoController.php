@@ -44,7 +44,7 @@ class RecorridoController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminRecorrido');
     }
 
     /**
@@ -55,14 +55,16 @@ class RecorridoController extends Controller
      */
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(),$this->rules());
+
         if($validator->fails()){
             return $validator->messages();
         }
-        $recorrido = new \App\Recorrido;
-        $recorrido->costo_economico = $request->get('costo_economico');
-        $recorrido->costo_bussiness = $request->get('costo_bussiness');
-        $recorrido->save();
+
+        $recorrido = Recorrido::create($request->all());
+
+
         return $recorrido;
     }
 
