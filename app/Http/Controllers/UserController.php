@@ -86,7 +86,8 @@ class UserController extends Controller
         catch(\Exception $e){
             return json_encode(['outcome' => 'error']);
         }
-        return $user;
+
+        return view('usuario')->withCompras($user->compras()->get());
     }
 
     /**

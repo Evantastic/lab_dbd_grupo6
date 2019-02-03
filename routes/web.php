@@ -21,6 +21,7 @@ Route::get('/comprar/{recorrido}/confirmar/{user}/{reserva}','CompraController@c
 Route::get('/comprar/paquete/{paquete}','PaqueteController@compra');
 Route::get('/comprar/paquete/{paquete}/boleta','PaqueteController@boleta');
 Route::get('/comprar/paquete/{paquete}/{user}/{reserva}/{vehiculo}/{habitacion}/{recorrido}','PaqueteController@confirmar');
+Route::get('/check-in','CompraController@checkin');
 
 Auth::routes();
 

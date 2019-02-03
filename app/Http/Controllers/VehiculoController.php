@@ -37,7 +37,8 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        return Vehiculo::all();
+        $vehiculos = Vehiculo::all();
+        return view('vehiculos')->withVehiculos($vehiculos);
     }
 
     /**
@@ -75,7 +76,7 @@ class VehiculoController extends Controller
      */
     public function show(Vehiculo $vehiculo)
     {
-        return $vehiculo;
+        return view('vehiculo')->withVehiculos($vehiculo);
     }
 
     /**

@@ -34,7 +34,8 @@ class HabitacionController extends Controller
      */
     public function index()
     {
-        return Habitacion::all();
+        $habitaciones = Habitacion::all();
+        return view('habitaciones')->withHabitaciones($habitaciones);
     }
 
     /**
@@ -61,7 +62,7 @@ class HabitacionController extends Controller
         }
 
         $habitacion = Habitacion::create($request->all());
-        
+
         return $habitacion;
     }
 
@@ -73,7 +74,7 @@ class HabitacionController extends Controller
      */
     public function show(Habitacion $habitacion)
     {
-        return $habitacion;
+        return view('habitacion')->withHabitacion($habitacion);
     }
 
     /**

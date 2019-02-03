@@ -61,7 +61,7 @@ class CompraController extends Controller
         }
 
         $compra = Compra::create($request->all());
-        
+
         return $compra;
     }
 
@@ -102,7 +102,7 @@ class CompraController extends Controller
         }
 
         $compra->update($request->all());
-        
+
         return $compra;
     }
 
@@ -217,5 +217,24 @@ class CompraController extends Controller
         else{
             return "no";
         }
+    }
+
+    public function checkin(Request $request){
+      $error404 = false;
+      $errorCheckeada = false;
+      try{
+        $compra = Compra::findOrFail($request->compra);
+        if($compra->checkeada){
+          $errorCheckeada = true;
+        }
+        else{
+          $compra->checkeada = true;
+          $compra->save();
+        }
+      }
+      catch(\Exception $e){
+        $error404 = true;;
+      }
+      return view('checkin')->withError404($error404)->withErrorCheckeada($errorCheckeada);
     }
 }

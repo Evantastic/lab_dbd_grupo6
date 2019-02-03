@@ -48,6 +48,14 @@
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
+                        <li class="nav-item active">
+                          <form action="http://192.168.10.10/logout" method="POST">
+                            <a class="nav-link" href="#" onclick="this.parentNode.submit()">Logout
+                                <span class="sr-only">(current)</span>
+                            </a>
+                          </form>
+
+                        </li>
                     </ul>
                 </div>
             </div>
