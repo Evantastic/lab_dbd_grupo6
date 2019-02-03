@@ -10,7 +10,7 @@
                     <p class="lead">
                         Id de Compra: {{$compra->id}}<br/>
                         Compra asociada a: {{$user->email}}<br/>
-                        Id Vehiculo: {{$vehiculo->id}}<br/>
+                        Id Habitacion: {{$habitacion->id}}<br/>
                     </p>
                 </div>
             </div>

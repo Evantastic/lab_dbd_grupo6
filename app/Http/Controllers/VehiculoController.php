@@ -161,7 +161,6 @@ class VehiculoController extends Controller
       ]);
       $creador = new ReservaController();
       $reserva = $creador->store($info);
-      $automotora = $vehiculo->automotora()->first();
       return view('boletaVehiculo')
       ->withVehiculo($vehiculo)
       ->withRequest($request)

@@ -10,7 +10,7 @@ $factory->define(App\Vehiculo::class, function (Faker $faker) {
         'modelo' => $faker->lastName,
         'tipo'=> $faker->text($maxNbChars = 32),
         'patente' => $faker->text($maxNbChars = 10),
-        'precio' => $faker->randomNumber($nbDigits = NULL, $strict = false),
+        'precio' => $faker->randomNumber($nbDigits = 3, $strict = false),
         'capacidad' => rand(2,6)
     ];
 });

@@ -5,7 +5,7 @@
     <div class="align-content-center">
 
 
-        <form action="/comprar/vehiculo/{{$vehiculo->id}}/boleta" method="get">
+        <form action="/comprar/habitacion/{{$habitacion->id}}/boleta" method="get">
             <div class="form-group row">
                 <label for="nombreInput" class="col-2 col-form-label">Nombre</label>
                 <div class="col-10">
