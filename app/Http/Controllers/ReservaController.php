@@ -9,18 +9,18 @@ class ReservaController extends Controller
 {
     public function rules(){
         return  [
-       
-        'costo'=>'required|numeric|max:10000000',
+
+        'costo'=>'required|numeric',
         'seguro'=>'required|boolean',
-        
+
         ];
     }
     public function rulesPut(){
         return  [
-       
-        'costo'=>'nullable|numeric|max:10000000',
+
+        'costo'=>'nullable|numeric',
         'seguro'=>'nullable|boolean',
-        
+
         ];
     }
     /**
@@ -51,11 +51,11 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-              $validator = Validator::make($request->all(),$this->rules());
+      $validator = Validator::make($request->all(),$this->rules());
         if($validator->fails()){
-            return $validator->messages(); 
+            return $validator->messages();
         }
-        
+
         $reserva = Reserva::create($request->all());
         return $reserva;//  //
     }
@@ -93,9 +93,9 @@ class ReservaController extends Controller
     {
                    $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
-            return $validator->messages(); 
+            return $validator->messages();
         }
-        
+
 
         $reserva->update($request->all());
         return $reserva;   //
@@ -116,5 +116,5 @@ class ReservaController extends Controller
         }
         return json_encode(['outcome' => 'error']);//
     }//
-    
+
 }

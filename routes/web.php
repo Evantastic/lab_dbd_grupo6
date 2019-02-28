@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +18,16 @@ Route::get('/viajes/{viaje}','ViajeController@show')->name('viaje');
 Route::get('/comprar/{recorrido}','RecorridoController@comprar');
 Route::get('/comprar/{recorrido}/boleta','RecorridoController@boleta');
 Route::get('/comprar/{recorrido}/confirmar/{user}/{reserva}','CompraController@confirmar');
+Route::get('/comprar/paquete/{paquete}','PaqueteController@compra');
+Route::get('/comprar/paquete/{paquete}/boleta','PaqueteController@boleta');
+Route::get('/comprar/paquete/{paquete}/{user}/{reserva}/{vehiculo}/{habitacion}/{recorrido}','PaqueteController@confirmar');
+Route::get('/check-in','CompraController@checkin');
+Route::get('/comprar/vehiculo/{vehiculo}','VehiculoController@compra');
+Route::get('/comprar/vehiculo/{vehiculo}/boleta','VehiculoController@boleta');
+Route::get('/comprar/vehiculo/{vehiculo}/{user}/{reserva}','VehiculoController@confirmar');
+Route::get('/comprar/habitacion/{habitacion}','HabitacionController@compra');
+Route::get('/comprar/habitacion/{habitacion}/boleta','HabitacionController@boleta');
+Route::get('/comprar/habitacion/{habitacion}/{user}/{reserva}','HabitacionController@confirmar');
 
 Auth::routes();
 

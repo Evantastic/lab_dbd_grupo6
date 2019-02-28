@@ -12,6 +12,23 @@
                 <a href="http://192.168.10.10/paquete/" class="list-group-item">Paquetes</a>
             </div>
 
+            <div class="list-group">
+                <a href="http://192.168.10.10/vehiculo/" class="list-group-item">Vehiculos</a>
+            </div>
+
+            <div class="list-group">
+                <a href="http://192.168.10.10/habitacion/" class="list-group-item">Habitaciones</a>
+            </div>
+
+            <br><br>
+            <form action="/check-in">
+              <div class="form-group">
+                <label for="formGroupExampleInput">Check-in</label>
+                <input type="number" class="form-control" id="compra" name="compra" placeholder="Id de compra">
+              </div>
+              <input type="submit" value="Submit">
+            </form>
+
         </div>
 
         <div class="col-lg-9">
@@ -38,7 +55,7 @@
                             <p class="card-text">Desde {{ $viaje->ciudad_origen()->first()->nombre_pais}}</p>
                         </div>
                         <div class="card-footer">
-                                
+
                         </div>
                     </div>
                 </div>

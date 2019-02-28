@@ -19,7 +19,7 @@
             <br>
 
             Aprovecha este paquete con <b>{{$paquete->descuento}}% de Descuento</b></br></br>
-            <a href="/comprar/paquete"><button   type="submit" class="btn btn-primary">Comprar</button></a>
+            <a href="/comprar/paquete/{{$paquete->id}}"><button   type="submit" class="btn btn-primary">Comprar</button></a>
 
             </p>
 
