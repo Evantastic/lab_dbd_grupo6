@@ -19,7 +19,7 @@
           <h1 class="display-4">Publicar</h1>
           <p class="lead">Con los siguientes botones puede publicar información</p>
           <hr class="my-4">
-          <p>Un gran poder conlleva una gran personalidad</p>
+          <p>Un gran poder conlleva una gran responsabilidad</p>
           <p class="lead">
             <a class="btn btn-primary btn-lg" href="/admin/vuelo" role="button">Vuelo</a>
           </p>

@@ -148,4 +148,26 @@ class UserController extends Controller
         return json_encode(['outcome' => 'error']);
     }//
 
+
+    /**
+    * Redirect the user to the provider authentication page.
+    *
+    * @return \Illuminate\Http\Redirect
+    */
+    public function redirectToProvider($provider)
+    {
+        config(['services.' . $provider . '.redirect' => route('provider.callback', [$provider])]);
+        return Socialite::driver($provider)->redirect();
+    }
+
+    /**
+    * Get the user information from provider.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function handleProviderCallback($provider)
+    {
+        $user = Socialite::driver($provider)->user();
+    }
+
 }

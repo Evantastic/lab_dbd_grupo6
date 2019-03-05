@@ -43,6 +43,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                        <!--<li class="nav-item active">
+                            <a class="nav-link" href="http://192.168.10.10/carrito">Carrito
+                                 <img  src="https://es.seaicons.com/wp-content/uploads/2016/03/shopping-cart-icon-2.png" alt="" height="25" width="25">
+                                
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li> -->
                         <li class="nav-item active">
                             <a class="nav-link" href="http://192.168.10.10/admin">Login
                                 <span class="sr-only">(current)</span>
