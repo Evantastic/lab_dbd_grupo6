@@ -236,6 +236,6 @@ class HabitacionController extends Controller
           $habitacionesFinales[] = $habitacion;
         }
       }
-      return $habitacionesFinales;
+      return view('habitaciones')->withHabitaciones($habitacionesFinales);
     }
 }

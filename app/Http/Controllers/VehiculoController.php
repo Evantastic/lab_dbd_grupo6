@@ -237,6 +237,6 @@ class VehiculoController extends Controller
           $vehiculosFinales[] = $vehiculo;
         }
       }
-      return $vehiculosFinales;
+      return view('vehiculos')->withVehiculos($vehiculosFinales);
     }
 }
