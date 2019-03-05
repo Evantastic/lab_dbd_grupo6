@@ -8,6 +8,7 @@ use App\Reserva;
 use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use DB;
 
 class HabitacionController extends Controller
 {
@@ -198,5 +199,43 @@ class HabitacionController extends Controller
       $this->crearHR($habitacion,$reserva,$request);
       $compra = $this->crearCompra($reserva,$user,$request);
       return view('confirmarHabitacion')->withCompra($compra)->withUser($user)->withHabitacion($habitacion);
+    }
+
+    public function busqueda(Request $request){
+      //'nombre_ciudad': 'South Leonora'
+      //'fecha_inicio': '2012-12-09'
+      //'fecha_termino': '2012-12-13'
+      $ciudad = DB::table('ciudades')->where('nombre',$request->nombre_ciudad)->first();
+      $info = DB::table('habitacion_reservas')
+        ->join('habitaciones', 'habitacion_reservas.habitacion_id', '=', 'habitaciones.id')
+        ->join('hoteles', 'habitaciones.hotel_id', '=', 'hoteles.id')
+        ->join('ciudades', 'hoteles.ciudad_id', '=', 'ciudades.id')
+        ->where('ciudad_id',$ciudad->id)
+        ->select('habitacion_id', 'fecha_inicio', 'fecha_termino')
+        ->get();
+      $fechaInicio = Carbon::parse($request->fecha_inicio);
+      $fechaTermino = Carbon::parse($request->fecha_termino);
+      $baneados = array();
+      foreach ($info as $reserva) {
+        $fechaInicioReserva = Carbon::parse($reserva->fecha_inicio);
+        $fechaTerminoReserva = Carbon::parse($reserva->fecha_termino);
+        if($fechaInicio->between($fechaInicioReserva,$fechaTerminoReserva)
+          || $fechaTermino->between($fechaInicioReserva,$fechaTerminoReserva)){
+          $baneados[] = $reserva->habitacion_id;
+        }
+      }
+      $habitaciones = DB::table('habitaciones')
+        ->join('hoteles', 'habitaciones.hotel_id', '=', 'hoteles.id')
+        ->join('ciudades', 'hoteles.ciudad_id', '=', 'ciudades.id')
+        ->where('ciudad_id',$ciudad->id)
+        ->select('habitaciones.*')
+        ->get();
+      $habitacionesFinales = array();
+      foreach($habitaciones as $habitacion) {
+        if( !in_array($habitacion->id, $baneados) ) {
+          $habitacionesFinales[] = $habitacion;
+        }
+      }
+      return view('habitaciones')->withHabitaciones($habitacionesFinales);
     }
 }

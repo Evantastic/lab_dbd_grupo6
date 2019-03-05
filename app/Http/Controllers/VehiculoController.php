@@ -8,6 +8,7 @@ use App\User;
 use App\Reserva;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use DB;
 
 class VehiculoController extends Controller
 {
@@ -196,8 +197,46 @@ class VehiculoController extends Controller
     }
 
     public function confirmar(Vehiculo $vehiculo, User $user, Reserva $reserva, Request $request){
-            $this->crearRV($vehiculo,$reserva,$request);
-            $compra = $this->crearCompra($reserva,$user,$request);
-            return view('confirmarVehiculo')->withCompra($compra)->withUser($user)->withVehiculo($vehiculo);
+      $this->crearRV($vehiculo,$reserva,$request);
+      $compra = $this->crearCompra($reserva,$user,$request);
+      return view('confirmarVehiculo')->withCompra($compra)->withUser($user)->withVehiculo($vehiculo);
+    }
+
+    public function busqueda(Request $request){
+      //'nombre_ciudad': 'South Leonora'
+      //'fecha_inicio': '2012-12-09'
+      //'fecha_termino': '2012-12-13'
+      $ciudad = DB::table('ciudades')->where('nombre',$request->nombre_ciudad)->first();
+      $info = DB::table('reserva_vehiculos')
+        ->join('vehiculos', 'reserva_vehiculos.vehiculo_id', '=', 'vehiculos.id')
+        ->join('automotoras', 'vehiculos.automotora_id', '=', 'automotoras.id')
+        ->join('ciudades', 'automotoras.ciudad_id', '=', 'ciudades.id')
+        ->where('ciudad_id',$ciudad->id)
+        ->select('vehiculo_id', 'fecha_inicio', 'fecha_termino')
+        ->get();
+      $fechaInicio = Carbon::parse($request->fecha_inicio);
+      $fechaTermino = Carbon::parse($request->fecha_termino);
+      $baneados = array();
+      foreach ($info as $reserva) {
+        $fechaInicioReserva = Carbon::parse($reserva->fecha_inicio);
+        $fechaTerminoReserva = Carbon::parse($reserva->fecha_termino);
+        if($fechaInicio->between($fechaInicioReserva,$fechaTerminoReserva)
+          || $fechaTermino->between($fechaInicioReserva,$fechaTerminoReserva)){
+          $baneados[] = $reserva->vehiculo_id;
+        }
       }
+      $vehiculos = DB::table('vehiculos')
+        ->join('automotoras', 'vehiculos.automotora_id', '=', 'automotoras.id')
+        ->join('ciudades', 'automotoras.ciudad_id', '=', 'ciudades.id')
+        ->where('ciudad_id',$ciudad->id)
+        ->select('vehiculos.*')
+        ->get();
+      $vehiculosFinales = array();
+      foreach($vehiculos as $vehiculo) {
+        if( !in_array($vehiculo->id, $baneados) ) {
+          $vehiculosFinales[] = $vehiculo;
+        }
+      }
+      return view('vehiculos')->withVehiculos($vehiculosFinales);
+    }
 }
