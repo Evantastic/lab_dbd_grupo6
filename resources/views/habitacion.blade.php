@@ -14,7 +14,7 @@
         <div class="card mt-4">
           <img class="card-img-top img-fluid" src="http://silverinfra.com/wp-content/uploads/2015/01/hotel.jpg" alt="">
             <div class="card-body">
-          	
+
 	          <div class="card-body">
 	          	<b style="font-size:30px">Habitacion</b>
 	            <p>
@@ -24,7 +24,7 @@
 	              <b>Capacidad: </b>{{$habitacion->capacidad}}<br/>
 
 	            </p><br/>
-	            <a href="/comprar/paquete/{{$habitacion->id}}"><button   type="submit" class="btn btn-primary">Comprar</button></a>
+	            <a href="/comprar/habitacion/{{$habitacion->id}}"><button   type="submit" class="btn btn-primary">Comprar</button></a>
 
 	            </p>
 
