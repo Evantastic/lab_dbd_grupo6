@@ -6,6 +6,7 @@ use App\Vuelo;
 use Illuminate\Http\Request;
 use Validator;
 use Carbon\Carbon;
+use DB;
 
 class VueloController extends Controller
 {
@@ -133,5 +134,52 @@ class VueloController extends Controller
             return json_encode(['outcome' => 'success']);
         }
         return json_encode(['outcome' => 'error']);
+    }
+
+    public function busqueda(Request $request) {
+      /*
+      * "nombre_ciudad_origen": "South Leonora"
+      * "nombre_ciudad_destino": "Port Norwoodville"
+      * "fecha_inicio": "2008-07-30"
+      * "cantidad": "3"
+      */
+      $ciudadOrigen = DB::table('ciudades')->where('nombre',$request->nombre_ciudad_origen)->first();
+      $ciudadDestino = DB::table('ciudades')->where('nombre',$request->nombre_ciudad_destino)->first();
+      $viaje = DB::table('viajes')
+        ->where('ciudad_origen_id', $ciudadOrigen->id)
+        ->where('ciudad_destino_id',$ciudadDestino->id)
+        ->first();
+      $fecha = Carbon::parse($request->fecha_inicio);
+      $baneados = array();
+      foreach ($viaje->recorridos()->get() as $recorrido) {
+        $vuelos = $recorrido->recorrido_vuelos()->get();
+        $fechasSalidas = array();
+        foreach ($vuelos as $vuelo) {
+          $fechasSalidas[] = $Carbon::parse($vuelo->tiempo_salida);
+        }
+        $min = min($fechasSalidas);
+        if(count($fechasSalidas) == 0){
+          $baneados[] = $recorrido->id;
+        }
+        elseif (!$fecha->between($min->subDay(),$min->addDay())) {
+          $baneados[] = $recorrido->id;
+        }
+        else {
+          foreach ($vuelos as $vuelo) {
+            if ($vuelo->capacidad_economica < $request->cantidad &&
+                $vuelo->capacidad_bussiness < $request->cantidad) {
+                  $baneados[] = $recorrido->id;
+                }
+            exit;
+          }
+        }
+      }
+      $recorridosFinales = array();
+      foreach ($viaje->recorridos()->get() as $recorrido) {
+        if( !in_array($recorrido->id, $baneados)) {
+          $recorridosFinales[] = $recorrido;
+        }
+      }
+      return $recorridosFinales;
     }
 }
