@@ -12,7 +12,7 @@ class Ciudad extends Model
         'nombre',
         'nombre_pais'
     ];
-    
+
     public function hoteles(){
         return $this->hasMany(Hotel::class);
     }
@@ -22,6 +22,6 @@ class Ciudad extends Model
     }
 
     public function automotoras(){
-        return $this->hasMany(Automora::class);
+        return $this->hasMany(Automotora::class);
     }
 }

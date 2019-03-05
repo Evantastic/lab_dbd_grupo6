@@ -28,6 +28,8 @@ Route::get('/comprar/vehiculo/{vehiculo}/{user}/{reserva}','VehiculoController@c
 Route::get('/comprar/habitacion/{habitacion}','HabitacionController@compra');
 Route::get('/comprar/habitacion/{habitacion}/boleta','HabitacionController@boleta');
 Route::get('/comprar/habitacion/{habitacion}/{user}/{reserva}','HabitacionController@confirmar');
+Route::get('/habitacion/buscar', 'HabitacionController@busqueda');
+Route::get('/vehiculo/buscar', 'VehiculoController@busqueda');
 
 Auth::routes();
 
