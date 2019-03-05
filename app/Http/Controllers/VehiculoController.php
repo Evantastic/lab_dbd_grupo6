@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Vehiculo;
+use App\User;
+use App\Reserva;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class VehiculoController extends Controller
 {
@@ -37,7 +40,8 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        return Vehiculo::all();
+        $vehiculos = Vehiculo::all();
+        return view('vehiculos')->withVehiculos($vehiculos);
     }
 
     /**
@@ -75,7 +79,7 @@ class VehiculoController extends Controller
      */
     public function show(Vehiculo $vehiculo)
     {
-        return $vehiculo;
+        return view('vehiculo')->withVehiculos($vehiculo);
     }
 
     /**
@@ -121,4 +125,79 @@ class VehiculoController extends Controller
         }
         return json_encode(['outcome' => 'error']);
     }
+
+    public function compra(Vehiculo $vehiculo){
+      return view('comprarVehiculo')->withVehiculo($vehiculo);
+    }
+
+    public function boleta(Vehiculo $vehiculo, Request $request){
+      try{
+          $user = \App\User::where('email',$request->email)->firstOrFail();
+      }
+      catch(\Exception $e){
+          $info = new \Illuminate\Http\Request();
+          $info->setMethod('POST');
+          $info->request->add([
+              'name'=> $request->nombre,
+              'apellido'=> $request->apellido,
+              'nacionalidad'=> $request->nacionalidad,
+              'edad'=> $request->edad,
+              'tipoUsuario'=> 0,
+              'email'=> $request->email,
+              'password'=> "asd123"
+          ]);
+          $creador = new UserController();
+          $user = $creador->store($info);
+      }
+      $fechaInicio = Carbon::parse($request->fecha_inicio);
+      $fechaTermino = Carbon::parse($request->fecha_termino);
+      $days = $fechaTermino->diffInDays($fechaInicio);
+      $costo = $vehiculo->precio * $days;
+      $info = new \Illuminate\Http\Request();
+      $info->setMethod('POST');
+      $info->request->add([
+          'costo' => $costo,
+          'seguro' => $request->seguro == "on"
+      ]);
+      $creador = new ReservaController();
+      $reserva = $creador->store($info);
+      return view('boletaVehiculo')
+      ->withVehiculo($vehiculo)
+      ->withRequest($request)
+      ->withUser($user)
+      ->withReserva($reserva)
+      ->withDays($days);
+    }
+
+    private function crearRV(Vehiculo $v, Reserva $rs, Request $r){
+      $controller = new ReservaVehiculoController();
+      $info = new \Illuminate\Http\Request();
+      $info->setMethod('POST');
+      $info->request->add([
+          'vehiculo_id'    => $v->id,
+          'reserva_id'      => $rs->id,
+          'precio' => $r->costoVehiculo,
+          'fecha_inicio' => $r->fecha_inicio,
+          'fecha_termino' => $r->fecha_termino
+      ]);
+      return $controller->store($info);
+    }
+
+    private function crearCompra(Reserva $reserva, User $user,Request $request){
+      $controller = new CompraController();
+        $info = new \Illuminate\Http\Request();
+        $info->setMethod('POST');
+        $info->request->add([
+            'reserva_id' => $reserva->id,
+            'user_id' => $user->id,
+            'medio_pago' => $request->medio
+        ]);
+        return $controller->store($info);
+    }
+
+    public function confirmar(Vehiculo $vehiculo, User $user, Reserva $reserva, Request $request){
+            $this->crearRV($vehiculo,$reserva,$request);
+            $compra = $this->crearCompra($reserva,$user,$request);
+            return view('confirmarVehiculo')->withCompra($compra)->withUser($user)->withVehiculo($vehiculo);
+      }
 }

@@ -22,8 +22,9 @@ class CreateComprasTable extends Migration
             $table->integer('medio_pago');//0 tarjeta de credito // 1 tarjeta de debito // 2 efectivo // 3 cheque
             $table->datetime('fecha_compra');
             $table->boolean('es_valido')->default=true;
+            $table->boolean('checkeada')->default=false;
             $table->timestamps();
-            
+
         });
     }
 

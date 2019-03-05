@@ -9,6 +9,6 @@ $factory->define(App\Habitacion::class, function (Faker $faker) {
         'numero_habitacion' => $faker->randomDigitNotNull,
         'capacidad' => rand(1,6),
         'descripcion' => $faker->text($maxNbChars = 512),
-        'precio' => $faker->randomNumber($nbDigits = NULL, $strict = false)
+        'precio' => $faker->randomNumber($nbDigits = 3, $strict = false)
     ];
 });

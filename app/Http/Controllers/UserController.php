@@ -19,7 +19,7 @@ class UserController extends Controller
 
 
         ];
-    }   
+    }
         public function rulesPut(){
         return[
         'name'=>'nullable|string|max:128',
@@ -32,7 +32,7 @@ class UserController extends Controller
 
 
         ];
-    }  
+    }
     /**
      * Display a listing of the resource.
      *
@@ -63,22 +63,14 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(),$this->rules());
         if($validator->fails()){
-            return $validator->messages(); 
+            return $validator->messages();
         }
-        
-        $user = new \App\User;
-        $user->name = $request->get('name');
-        $user->apellido = $request->get('apellido');
-        $user->nacionalidad = $request->get('nacionalidad');
-        $user->edad= $request->get('edad');
-        $user->tipoUsuario= $request->get('tipoUsuario');
-        $user->email= $request->get('email');
-        $user->password= $request->get('password');
-        $user->save();
+
+        $user = User::create($request->all());
         return $user;
     }
  //
-    
+
 
     /**
      * Display the specified resource.
@@ -94,7 +86,8 @@ class UserController extends Controller
         catch(\Exception $e){
             return json_encode(['outcome' => 'error']);
         }
-        return $user;
+
+        return view('usuario')->withCompras($user->compras()->get());
     }
 
     /**
@@ -107,7 +100,7 @@ class UserController extends Controller
     {
         //
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -123,23 +116,14 @@ class UserController extends Controller
         catch(\Exception $e){
             return json_encode(['outcome' => 'error']);
         }
-        $validator = Validator::make($request->all(),$this->rulePut());
+        $validator = Validator::make($request->all(),$this->rulesPut());
         if($validator->fails()){
-            return $validator->messages(); 
+            return $validator->messages();
         }
-        
-        
-        $user->name = $request->get('name');
-        $user->apellido = $request->get('apellido');
-        $user->nacionalidad = $request->get('nacionalidad');
-        $user->edad=$request->get('edad');
-        $user->tipoUsuario= $request->get('tipoUsuario');
-        $user->email= $request->get('email');
-        $user->password= $request->get('password');
-        $user->save();
-        return $user;//Aca va lo normal
-        
-        
+        $user->update($request->all());
+        return $user;
+
+
     }
 
     /**
@@ -148,14 +132,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $id)
+    public function destroy($id)
     {
-                if($id->es_valido){
-            $id->es_valido = false;
-            $id->save();
+        try{
+            $user = \App\User::findOrFail($id);
+        }
+        catch(\Exception $e){
+            return json_encode(['outcome' => 'error']);
+        }
+        if($user->es_valido){
+            $user->es_valido = false;
+            $user->save();
             return json_encode(['outcome' => 'success']);
         }
         return json_encode(['outcome' => 'error']);
     }//
-    
+
 }

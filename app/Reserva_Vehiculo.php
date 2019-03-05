@@ -19,8 +19,6 @@ class Reserva_Vehiculo extends Model
     ];
 
     protected $dates = [
-        'fecha_inicio',
-        'fecha_termino'
     ];
 
     public function getDateFormat()

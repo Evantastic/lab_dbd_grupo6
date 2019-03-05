@@ -11,6 +11,7 @@ class Recorrido extends Model
     protected $table = 'recorridos';
 
     protected $fillable = [
+        'viaje_id',
         'costo_economico',
         'costo_bussiness'
     ];
@@ -25,5 +26,9 @@ class Recorrido extends Model
 
     public function recorrido_reservas(){
         return $this->hasMany(Recorrido_Reserva::class);
+    }
+
+    public function viaje(){
+        return $this->belongsTo(Viaje::class);
     }
 }

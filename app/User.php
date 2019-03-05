@@ -24,7 +24,8 @@ class User extends Authenticatable
         'edad',
         'tipoUsuario',
         'email',
-        'password'
+        'password',
+        'is_admin'
     ];
 
     /**
@@ -42,5 +43,10 @@ class User extends Authenticatable
     
     public function queryLogs(){
         return $this->hasMany(queryLog::class);
+    }
+
+    public function isAdmin(){
+
+        return $this->is_admin;   
     }
 }

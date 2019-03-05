@@ -1,98 +1,74 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+<div class="container">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+    <div class="row">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        <div class="col-lg-3">
 
-            .full-height {
-                height: 100vh;
-            }
+            <h1 class="my-4">Atam Airlines</h1>
+            <div class="list-group">
+                <a href="http://192.168.10.10/paquete/" class="list-group-item">Paquetes</a>
+            </div>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+            <div class="list-group">
+                <a href="http://192.168.10.10/vehiculo/" class="list-group-item">Vehiculos</a>
+            </div>
 
-            .position-ref {
-                position: relative;
-            }
+            <div class="list-group">
+                <a href="http://192.168.10.10/habitacion/" class="list-group-item">Habitaciones</a>
+            </div>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+            <br><br>
+            <form action="/check-in">
+              <div class="form-group">
+                <label for="formGroupExampleInput">Check-in</label>
+                <input type="number" class="form-control" id="compra" name="compra" placeholder="Id de compra">
+              </div>
+              <input type="submit" value="Submit">
+            </form>
 
-            .content {
-                text-align: center;
-            }
+        </div>
 
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+        <div class="col-lg-9">
+            <br/>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Disfruta de nuestros viajes</h1>
+                    <p class="lead">Si no tienes un objetivo fijo ¡Mira nuestros destinos!</p>
+                    <a href="http://192.168.10.10/buscar/">
+                        <button type="button" class="btn btn-primary">En caso contrario, cuéntanos hacia donde vas</button>
+                    </a>
                 </div>
             </div>
+
+            <div class="row">
+                @foreach($viajes as $viaje)
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="http://192.168.10.10/viaje/{{$viaje->id}}"><img class="card-img-top" src="https://o.aolcdn.com/images/dims3/GLOB/crop/2200x1103+0+191/resize/630x315!/format/jpg/quality/85/http%3A%2F%2Fo.aolcdn.com%2Fhss%2Fstorage%2Fmidas%2Fbed3568ba66967253916f23bdca8aa86%2F205548752%2FRTSSS75.jpeg" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="http://192.168.10.10/viaje/{{$viaje->id}}">{{ $viaje->ciudad_destino()->first()->nombre_pais}}</a>
+                            </h4>
+                            <p class="card-text">Desde {{ $viaje->ciudad_origen()->first()->nombre_pais}}</p>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <!-- /.row -->
+
         </div>
-    </body>
-</html>
+        <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+</div>
+
+@endsection
