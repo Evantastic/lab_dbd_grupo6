@@ -442,6 +442,7 @@ class ComposerStaticInita641b68649db8c3a3b2d9b720d320cf6
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\AutomotoraController' => __DIR__ . '/../..' . '/app/Http/Controllers/AutomotoraController.php',
+        'App\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/CartController.php',
         'App\\Http\\Controllers\\CiudadController' => __DIR__ . '/../..' . '/app/Http/Controllers/CiudadController.php',
         'App\\Http\\Controllers\\CompraController' => __DIR__ . '/../..' . '/app/Http/Controllers/CompraController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
