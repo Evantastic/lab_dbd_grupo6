@@ -30,6 +30,7 @@ Route::get('/comprar/habitacion/{habitacion}/boleta','HabitacionController@bolet
 Route::get('/comprar/habitacion/{habitacion}/{user}/{reserva}','HabitacionController@confirmar');
 Route::get('/habitacion/buscar', 'HabitacionController@busqueda');
 Route::get('/vehiculo/buscar', 'VehiculoController@busqueda');
+Route::get('/vuelo/buscar', 'VueloController@busqueda');
 
 Auth::routes();
 
