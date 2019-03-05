@@ -11,7 +11,7 @@
       <div class="col-lg-9">
 
         <div class="card mt-4">
-          <img class="card-img-top img-fluid" src="http://silverinfra.com/wp-content/uploads/2015/01/hotel.jpg" alt="">
+          <img class="card-img-top img-fluid" src="https://www.autoscout24.es/assets/auto/images/model/nissan/nissan-gtr/nissan-gtr-l-01.jpg" alt="">
             <div class="card-body">
 
 	          <div class="card-body">

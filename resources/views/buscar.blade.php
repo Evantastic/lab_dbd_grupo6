@@ -10,24 +10,41 @@
                     <p class="lead">¡Dinos de donde vienes y hacia donde vas!</p>
                 </div>
             </div>
-
-            <form>
-                <div class="form-group">
-                    <label for="origen">Ciudad de origen</label>
-                    <input type="text" class="form-control" id="origen" name="origen" aria-describedby="origenHelp" placeholder="Ingrese la ciudad de origen">
-                    <small id="origenHelp" class="form-text text-muted">Cuentanos de donde quieres partir</small>
+        <form action="/vuelo/buscar" method="get">
+            <div class="form-group row">
+                <label for="nombreInput" class="col-2 col-form-label">Ciudad de Origen</label>
+                <div class="col-10">
+                    <input class="form-control" type="text" value="" id="nombreInput" name="nombre_ciudad_origen">
                 </div>
-
-                <div class="form-group">
-                    <label for="destino">Ciudad de destino</label>
-                    <input type="text" class="form-control" id="destino" name="destino" aria-describedby="destinoHelp" placeholder="Ingrese la ciudad de destino">
-                    <small id="destinoHelp" class="form-text text-muted">Dinos hacia donde quieres llegar</small>
+            </div>
+            <div class="form-group row">
+                <label for="nombreInput" class="col-2 col-form-label">Ciudad de Destino</label>
+                <div class="col-10">
+                    <input class="form-control" type="text" value="" id="nombreInput" name="nombre_ciudad_destino">
                 </div>
-
-                <a href="http://192.168.10.10/buscar/#origen/#destino">
-                    <button type="submit" class="btn btn-primary">Buscar</button>
-                </a>
-            </form>
+            </div>
+            <div class="form-group row">
+                <label for="apellidoInput" class="col-2 col-form-label">Fecha Inicio</label>
+                <div class="col-10">
+                    <input class="form-control" type="text" value="" id="apellidoInput" name="fecha_inicio">
+                    <small id="medioHelp" class="form-text text-muted">AAAA-MM-DD</small>
+                </div>
+                
+            </div>
+            <div class="form-group row">
+                <label for="nacionalidadInput" class="col-2 col-form-label">Cantidad</label>
+                <div class="col-10">
+                    <input class="form-control" type="text" value="" id="nacionalidadInput" name="cantidad">
+                    
+                </div>
+                
+            </div>
+            
+            <br/>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    
+           
         </div>
     </div>
 

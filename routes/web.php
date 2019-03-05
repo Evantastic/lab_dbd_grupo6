@@ -55,12 +55,24 @@ Route::resource('/habitacion_reserva','HabitacionReservaController');
 Route::resource('/paquete_reserva','PaqueteReservaController');
 Route::resource('/reserva_vehiculo','ReservaVehiculoController');
 Route::resource('/recorrido_vuelo','RecorridoVueloController');
-
+Route::resource('/carrito','CartController');
 Route::group(['middleware' => ['auth','admin']], function(){
 	Route::get('/admin', function(){
 		return view('admin');
 	});
-	Route::get('/admin/vuelo','VueloController@create');
-	Route::get('/admin/recorrido','RecorridoController@create');
-	Route::get('/admin/viaje','ViajeController@create');
+Route::get('/admin/vuelo','VueloController@create');
+Route::get('/admin/recorrido','RecorridoController@create');
+Route::get('/admin/viaje','ViajeController@create');
+
+// Redirect the user to the provider authentication page
+Route::get('auth/{provider}', [
+    'as' => 'provider.login',
+    'uses' => 'Auth\LoginController@redirectToProvider'
+	]);
+
+// Get the user information from provider
+Route::get('auth/{provider}/callback', [
+    'as' => 'provider.callback',
+    'uses' => 'Auth\LoginController@handleProviderCallback'
+	]);
 });
