@@ -1,0 +1,22 @@
+Busqueda Ida:
+nombre_ciudad_origen=Rainamouth
+nombre_ciudad_destino=East Shayleechester
+fecha_inicio= 1983-06-28
+cantidad=2
+
+Busqueda Ida Vuelta
+nombre_ciudad_origen=Rainamouth
+nombre_ciudad_destino=East Shayleechester
+fecha_inicio=1983-06-28
+fecha_termino=2004-07-30
+cantidad=2
+
+Busqueda Vehiculo
+Ciudad: Rainamouth
+Fecha Inicio: 2010-01-01
+Fecha Termino: 2019-02-01
+
+Busqueda Habitacion
+Ciudad: Rainamouth
+Fecha Inicio: 2010-01-01
+Fecha Termino: 2019-02-01

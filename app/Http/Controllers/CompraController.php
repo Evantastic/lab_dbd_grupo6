@@ -63,8 +63,12 @@ class CompraController extends Controller
         }
 
         $compra = Compra::create($request->all());
-        /*Mail::to($compra->user()->first()->email)->send(new OrderShipped($compra));*/
-        Mail::to(Auth::user()->email)->send(new OrderShipped($compra));
+        try{
+          Mail::to(Auth::user()->email)->send(new OrderShipped($compra));
+        }
+        catch(\Exception $e){
+          Mail::to($compra->user()->first()->email)->send(new OrderShipped($compra));
+        }
         return $compra;
     }
 
