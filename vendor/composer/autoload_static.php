@@ -482,6 +482,8 @@ class ComposerStaticInita641b68649db8c3a3b2d9b720d320cf6
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Mail\\OrderShipped' => __DIR__ . '/../..' . '/app/Mail/OrderShipped.php',
+        'App\\Notifications\\SimpleNotification' => __DIR__ . '/../..' . '/app/Notifications/SimpleNotification.php',
         'App\\Paquete' => __DIR__ . '/../..' . '/app/Paquete.php',
         'App\\Paquete_Reserva' => __DIR__ . '/../..' . '/app/Paquete_Reserva.php',
         'App\\Pasaje' => __DIR__ . '/../..' . '/app/Pasaje.php',
