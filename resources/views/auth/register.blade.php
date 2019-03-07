@@ -38,7 +38,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -73,5 +73,16 @@
             </div>
         </div>
     </div>
+    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+<!--Other form fields above the button-->
+
+    <hr>
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-4">
+
+            <a href="{{ url('/auth/facebook') }}" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+        </div>
+    </div>
+</form>
 </div>
 @endsection

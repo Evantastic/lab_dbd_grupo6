@@ -15,9 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
-        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+        'domain' => 'your-mailgun-domain',
+        'secret' => 'your-mailgun-key',
     ],
 
     'ses' => [
@@ -43,7 +42,7 @@ return [
     'facebook' => [
     'client_id' => env('FACEBOOK_CLIENT_ID'),
     'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-    'redirect' => '',
+    'redirect'      => env('FACEBOOK_URL'),
     ],
 
 ];

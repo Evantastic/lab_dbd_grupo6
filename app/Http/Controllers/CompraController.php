@@ -7,9 +7,11 @@ use \App\Recorrido;
 use \App\User;
 use \App\Reserva;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use Carbon\Carbon;
-
+use App\Mail\OrderShipped;
+use Auth;
 class CompraController extends Controller
 {
     public function rulesPost(){
@@ -61,7 +63,8 @@ class CompraController extends Controller
         }
 
         $compra = Compra::create($request->all());
-
+        /*Mail::to($compra->user()->first()->email)->send(new OrderShipped($compra));*/
+        Mail::to(Auth::user()->email)->send(new OrderShipped($compra));
         return $compra;
     }
 
@@ -211,6 +214,7 @@ class CompraController extends Controller
             $pasajes = $this->crearPasajes($recorrido, $request, $reserva);
             $this->crearRR($recorrido,$reserva,$request);
             $compra = $this->crearCompra($reserva,$user,$request);
+
             return view('compra')->withCompra($compra)->withRecorrido($recorrido)->withUser($user)->withPasajes($pasajes);
             return $compra;
         }

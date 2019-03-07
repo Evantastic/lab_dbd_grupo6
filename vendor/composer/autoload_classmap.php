@@ -53,6 +53,8 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Mail\\OrderShipped' => $baseDir . '/app/Mail/OrderShipped.php',
+    'App\\Notifications\\SimpleNotification' => $baseDir . '/app/Notifications/SimpleNotification.php',
     'App\\Paquete' => $baseDir . '/app/Paquete.php',
     'App\\Paquete_Reserva' => $baseDir . '/app/Paquete_Reserva.php',
     'App\\Pasaje' => $baseDir . '/app/Pasaje.php',
