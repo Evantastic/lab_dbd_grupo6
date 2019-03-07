@@ -18,6 +18,7 @@
             <br/><br/>
             <a href="http://192.168.10.10/">
                 <button type="button" class="btn btn-primary">Volver a la pagina principal</button>
+                
             </a>
         </div>
     </div>

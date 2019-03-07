@@ -51,6 +51,11 @@
                             </a>
                         </li> -->
                         <li class="nav-item active">
+                            <a class="nav-link" href="http://192.168.10.10/register">Registro
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
                             <a class="nav-link" href="http://192.168.10.10/admin">Login
                                 <span class="sr-only">(current)</span>
                             </a>

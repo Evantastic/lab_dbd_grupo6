@@ -65,15 +65,11 @@ Route::get('/admin/vuelo','VueloController@create');
 Route::get('/admin/recorrido','RecorridoController@create');
 Route::get('/admin/viaje','ViajeController@create');
 
-// Redirect the user to the provider authentication page
-Route::get('auth/{provider}', [
-    'as' => 'provider.login',
-    'uses' => 'Auth\LoginController@redirectToProvider'
-	]);
-
-// Get the user information from provider
-Route::get('auth/{provider}/callback', [
-    'as' => 'provider.callback',
-    'uses' => 'Auth\LoginController@handleProviderCallback'
-	]);
+// OAuth Routes
+Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

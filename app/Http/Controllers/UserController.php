@@ -10,10 +10,10 @@ class UserController extends Controller
     public function rules(){
         return[
         'name'=>'required|string|max:128',
-        'apellido'=>'required|string|max:128',
-        'nacionalidad'=>'required|string|max:32',
-        'edad'=>'required|numeric|max:100',
-        'tipoUsuario'=>'required|numeric|max:10',
+        'apellido'=>'nullable|string|max:128',
+        'nacionalidad'=>'nullable|string|max:32',
+        'edad'=>'nullable|numeric|max:100',
+        'tipoUsuario'=>'nullable|numeric|max:10',
         'email'=>'required|string|max:32',
         'password'=>'required|string|max:32'
 
@@ -67,6 +67,7 @@ class UserController extends Controller
         }
 
         $user = User::create($request->all());
+        $user->tipoUsuario=1;
         return $user;
     }
  //
