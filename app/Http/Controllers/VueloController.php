@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Vuelo;
+use App\Ciudad;
+use App\Viaje;
 use Illuminate\Http\Request;
 use Validator;
 use Carbon\Carbon;
@@ -136,41 +138,33 @@ class VueloController extends Controller
         return json_encode(['outcome' => 'error']);
     }
 
-    public function busqueda(Request $request) {
-      /*
-      * "nombre_ciudad_origen": "South Leonora"
-      * "nombre_ciudad_destino": "Port Norwoodville"
-      * "fecha_inicio": "2008-07-30"
-      * "cantidad": "3"
-      */
-      $ciudadOrigen = DB::table('ciudades')->where('nombre',$request->nombre_ciudad_origen)->first();
-      $ciudadDestino = DB::table('ciudades')->where('nombre',$request->nombre_ciudad_destino)->first();
-      $viaje = DB::table('viajes')
-        ->where('ciudad_origen_id', $ciudadOrigen->id)
-        ->where('ciudad_destino_id',$ciudadDestino->id)
-        ->first();
-      $fecha = Carbon::parse($request->fecha_inicio);
+    public function busquedaInterna($viaje, $fecha, $cantidad,$min){
       $baneados = array();
       foreach ($viaje->recorridos()->get() as $recorrido) {
         $vuelos = $recorrido->recorrido_vuelos()->get();
         $fechasSalidas = array();
         foreach ($vuelos as $vuelo) {
-          $fechasSalidas[] = $Carbon::parse($vuelo->tiempo_salida);
+          $vueloAux = $vuelo->vuelo()->first();
+          $fechasSalidas[] = Carbon::parse($min ? $vueloAux->tiempo_salida : $vueloAux->tiempo_llegada);
         }
-        $min = min($fechasSalidas);
+        $date = $min ? min($fechasSalidas): max($fechasSalidas);
+        $tomorrow = new Carbon($date);
+        $yesterday = new Carbon($date);
+        $yesterday->subDay();
+        $tomorrow->addDay();
         if(count($fechasSalidas) == 0){
           $baneados[] = $recorrido->id;
         }
-        elseif (!$fecha->between($min->subDay(),$min->addDay())) {
+        elseif (!$fecha->between($yesterday,$tomorrow)) {
           $baneados[] = $recorrido->id;
         }
         else {
           foreach ($vuelos as $vuelo) {
-            if ($vuelo->capacidad_economica < $request->cantidad &&
-                $vuelo->capacidad_bussiness < $request->cantidad) {
+            if ($vuelo->vuelo()->first()->capacidad_economica < $cantidad &&
+                $vuelo->vuelo()->first()->capacidad_bussiness < $cantidad) {
                   $baneados[] = $recorrido->id;
+                  break;
                 }
-            exit;
           }
         }
       }
@@ -181,5 +175,53 @@ class VueloController extends Controller
         }
       }
       return $recorridosFinales;
+    }
+
+    public function busqueda(Request $request) {
+      /*
+      "nombre_ciudad_origen": "South Leonora",
+      "nombre_ciudad_destino": "Port Norwoodville",
+      "fecha_inicio": "2008-07-30",
+      "cantidad": "3"
+      */
+      $ciudadOrigen = Ciudad::where('nombre',$request->nombre_ciudad_origen)->first();
+      $ciudadDestino = Ciudad::where('nombre',$request->nombre_ciudad_destino)->first();
+      $viaje = Viaje::where('ciudad_origen_id', $ciudadOrigen->id)
+        ->where('ciudad_destino_id',$ciudadDestino->id)
+        ->first();
+      $fecha = Carbon::parse($request->fecha_inicio);
+      $recorridosFinales = $this->busquedaInterna($viaje,$fecha,$request->cantidad, true);
+      return view('viaje')
+        ->withRecorridos($recorridosFinales)
+        ->withViaje($viaje)
+        ->withVuelta(false);
+    }
+
+    public function busquedaIdaVuelta(Request $request){
+      /*
+      "nombre_ciudad_origen": "South Leonora",
+      "nombre_ciudad_destino": "Port Norwoodville",
+      "fecha_inicio": "2008-07-30",
+      "fecha_termino": "2002-07-04",
+      "cantidad": "3"
+      */
+      $ciudadOrigen = Ciudad::where('nombre',$request->nombre_ciudad_origen)->first();
+      $ciudadDestino = Ciudad::where('nombre',$request->nombre_ciudad_destino)->first();
+      $viaje1 = Viaje::where('ciudad_origen_id', $ciudadOrigen->id)
+        ->where('ciudad_destino_id',$ciudadDestino->id)
+        ->first();
+      $fecha = Carbon::parse($request->fecha_inicio);
+      $recorridosIda = $this->busquedaInterna($viaje1, $fecha, $request->cantidad, true);
+      $viaje2 = Viaje::where('ciudad_origen_id', $ciudadDestino->id)
+        ->where('ciudad_destino_id',  $ciudadOrigen->id)
+        ->first();
+      $fecha = Carbon::parse($request->fecha_termino);
+      $recorridosVuelta = $this->busquedaInterna($viaje2, $fecha, $request->cantidad, false);
+      return view('viaje')
+        ->withRecorridos($recorridosIda)
+        ->withViaje($viaje1)
+        ->withViajeVuelta($viaje2)
+        ->withRecorridosVuelta($recorridosVuelta)
+        ->withVuelta(true);
     }
 }

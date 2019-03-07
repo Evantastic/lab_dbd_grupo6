@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'kakoo.ub@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'atamnoreply@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'ATAM'),
     ],
 

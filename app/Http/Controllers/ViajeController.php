@@ -68,7 +68,8 @@ class ViajeController extends Controller
     {
       return view('viaje')
       ->withRecorridos($viaje->recorridos()->get())
-      ->withViaje($viaje);
+      ->withViaje($viaje)
+      ->withVuelta(false);
     }
 
     /**
