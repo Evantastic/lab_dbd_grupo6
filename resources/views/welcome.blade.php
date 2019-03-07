@@ -26,7 +26,7 @@
                 <label for="formGroupExampleInput">Check-in</label>
                 <input type="number" class="form-control" id="compra" name="compra" placeholder="Id de compra">
               </div>
-              <input type="submit" value="Submit">
+              <input type="submit" value="Hacer Check-in">
             </form>
 
         </div>
