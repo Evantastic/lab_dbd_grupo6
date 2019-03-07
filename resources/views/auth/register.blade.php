@@ -74,7 +74,7 @@
         </div>
     </div>
     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-<!--Other form fields above the button-->
+<!--Other form fields above the button
 
     <hr>
     <div class="form-group">
@@ -82,7 +82,7 @@
 
             <a href="{{ url('/auth/facebook') }}" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
         </div>
-    </div>
+    </div>-->
 </form>
 </div>
 @endsection
